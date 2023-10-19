@@ -36,7 +36,10 @@ Route::group(['middleware' => ['locale']], function () {
 	Route::match(array('GET', 'POST'),'property/get-price', 'PropertyController@getPrice');
 	Route::get('set-slug/', 'PropertyController@set_slug');
 	Route::get('signup', 'LoginController@signup');
+	Route::get('autenticate', 'LoginController@autenticate');
+	Route::get('validatecc', 'LoginController@validateConfirmationCode');
 	Route::post('/checkUser/check', 'LoginController@check')->name('checkUser.check');
+    Route::post('signup2', 'LoginCodesController@store')->name('signup2.store');
 });
 
 //Auth::routes();

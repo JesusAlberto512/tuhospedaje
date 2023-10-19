@@ -544,17 +544,17 @@ button:focus {
 }
 
 .btn {
-	border-radius: 25px;
+	border-radius: 14px;
 }
 .form-control{
-	border-radius: 25px;
+	border-radius: 14px;
 }
 .button-reactangular{
-	border-radius: 25px;
+	border-radius: 14px;
 }
 
 .Tuhospedaje-round {
-	border-radius: 25px;
+	border-radius: 14px;
 }
 
 .Tuhospedaje-button span {
@@ -644,19 +644,19 @@ button.vbtn-light:hover {
 }
 
 .button-default {
-	border-radius: .5rem;
+	border-radius: 14px;
 }
 
 .button-reactangular {
-	border-radius: 6rem;
+	border-radius: 14px;
 }
 
 .button-rounded {
-	border-radius: 5rem;
+	border-radius: 14px;
 }
 
 .button-rounded-4 {
-	border-radius: .4rem;
+	border-radius: 14px;
 }
 
 .vbtn-outline-success {
