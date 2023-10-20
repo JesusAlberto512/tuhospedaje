@@ -91,12 +91,12 @@ class LoginController extends Controller
     public function autenticate(Request $request)
     {
         $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
-        return view('home.autenticate', $data);
+        return view('home.authenticate', $data);
     }
 
-    public function validateConfirmationCode (Request $request) 
+    public function validateConfirmationCode (Request $request)
     {
-        return view('home.validatecc'); 
+        return view('home.validate_authentication');
 
     }
 

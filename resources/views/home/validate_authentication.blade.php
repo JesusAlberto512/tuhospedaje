@@ -12,10 +12,10 @@
 			</small>
 			<br/>
 			<hr/>
-				<form id="signup_form" name="signup_form" method="post" action="{{ url('create') }}" class='signup-form login-form' accept-charset='UTF-8'>
+				<form id="signup_form" name="signup_form" method="post" action="{{ route('validate-mobile') }}" class='signup-form login-form' accept-charset='UTF-8'>
 					{{ csrf_field() }}
 					<div class="row text-16">
-						
+
 						<div class="form-group col-sm-12 p-0">
                             <label for="validation_code">{{ __('Validation Code') }}</label>
 							@if ($errors->has('validation_code')) <p class="error-tag">{{ $errors->first('validation_code') }}</p> @endif

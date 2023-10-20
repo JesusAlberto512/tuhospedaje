@@ -6,6 +6,8 @@ use App\Models\LoginCodes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLoginCodesRequest;
 use App\Http\Requests\UpdateLoginCodesRequest;
+use Illuminate\Http\RedirectResponse;
+use App\Models\{Settings};
 
 class LoginCodesController extends Controller
 {
@@ -26,20 +28,36 @@ class LoginCodesController extends Controller
      */
     public function create()
     {
-        //
+        $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
+        return view('home.authenticate', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLoginCodesRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreLoginCodesRequest $request
+     * @return RedirectResponse|void
      */
     public function store(StoreLoginCodesRequest $request)
     {
+        Log::emergenci($request);
+        $code = mt_rand(100000, 999999);
+        Log::info($code);
+        Log::notice($request->ajax());
+        $validated = $request->validated();
         if($request->ajax()){
-            LoginCodes::create($request->validated());
-            return view('login.view');
+            if($validated){
+                LoginCodes::created(['verification_code' => $code,
+                    'carrier_code' => $request->input('carrier_code'),
+                    'phone' => 'formatted_phone']);
+                //LoginCodes::create($request->validated());
+                return redirect()->route('validate-mobile') ->with('response', 'Codigo enviado correctamente');
+            }else{
+                abort(404);
+            }
+
+        }else{
+            abort(404);
         }
     }
 

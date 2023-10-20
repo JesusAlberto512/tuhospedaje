@@ -9,7 +9,7 @@
 		<div class="p-5 mt-5 mb-5 border w-450">
 			<h2 class="thj-title">{{__('login or register')}}</h2>
                 <br/>
-				<form id="signup_form" name="signup_form" method="post" action="{{ url('create') }}" class='signup-form login-form' accept-charset='UTF-8' onsubmit="return ageValidate();">
+				<form id="signup_form" name="signup_form" method="post" action="{{ route('authenticate.store',false) }}" class='signup-form login-form' accept-charset='UTF-8' >
 					{{ csrf_field() }}
 					<div class="row text-16">
 						<input type="hidden" name='email_signup' id='form'>
@@ -17,7 +17,7 @@
 						<input type="hidden" name="carrier_code" id="carrier_code" class="form-control">
 						<input type="hidden" name="formatted_phone" id="formatted_phone" class="form-control">
 
-						
+
 						<div class="form-group col-sm-12 p-0">
                             <label for="first_name">{{ __('Phone') }}</label>
 								<input type="tel" class="form-control text-14 p-2" id="phone" name="phone">
@@ -32,11 +32,11 @@
 						</button>
 					</div>
 				</form>
-				
+
 				 @if ($social['google_login'] || $social['facebook_login'])
 					<p class="text-center font-weight-700 mt-1">- {{ __('or') }} -</p>
 				@endif
-				
+
 				 @if ($social['facebook_login'])
 					<a href="{{ isset($facebook_url) ? $facebook_url : url('facebookLogin') }}">
 						<button class="btn btn-outline-primary pt-3 pb-3 text-16 w-100">
@@ -53,7 +53,7 @@
 					</a>
 				@endif
 
-				 
+
 			</div>
     </div>
 </div>
