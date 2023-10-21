@@ -8,6 +8,7 @@ use App\Http\Requests\StoreLoginCodesRequest;
 use App\Http\Requests\UpdateLoginCodesRequest;
 use Illuminate\Http\RedirectResponse;
 use App\Models\{Settings};
+use Illuminate\Support\Facades\Log;
 
 class LoginCodesController extends Controller
 {
@@ -40,11 +41,13 @@ class LoginCodesController extends Controller
      */
     public function store(StoreLoginCodesRequest $request)
     {
-        Log::emergenci($request);
+        //dd($request);
+        Log::emergency($request);
         $code = mt_rand(100000, 999999);
         Log::info($code);
         Log::notice($request->ajax());
         $validated = $request->validated();
+        Log::info($validated);
         if($request->ajax()){
             if($validated){
                 LoginCodes::created(['verification_code' => $code,

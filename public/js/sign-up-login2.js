@@ -1,5 +1,5 @@
 "use strict"
-$('select').on('change', function() {
+/*$('select').on('change', function() {
     var dobError = '';
     var day = document.getElementById("user_birthday_day").value;
     var month = document.getElementById("user_birthday_month").value;
@@ -161,7 +161,7 @@ $(document).on('blur keyup', '#email', function() {
     }
 
 });
-
+*/
 var hasPhoneError = false;
 var hasEmailError = false;
 
@@ -253,7 +253,7 @@ $(document).ready(function()
     $("input[name=phone]").on('blur keyup', function(e)
     {
         formattedPhone();
-        $('#btn').attr('disabled', false);
+        $('#btnPhone').attr('disabled', false);
         $('#phone').html('').css("border-color","none");
         if ($.trim($(this).val()) !== '') {
             if (!$(this).intlTelInput("isValidNumber") || !isValidPhoneNumber($.trim($(this).val()))) {
@@ -305,6 +305,7 @@ $(document).ready(function()
             enableDisableButton();
         }
     });
+
 });
 
 function formattedPhone()
@@ -321,7 +322,7 @@ function enableDisableButton() {
         $('form').find("button[type='submit']").prop('disabled', true);
     }
 }
-
+/*
 $.validator.addMethod("minAge", function(value, element, min) {
     var today = new Date();
     var birthDate = new Date(value);
@@ -335,3 +336,4 @@ $.validator.addMethod("minAge", function(value, element, min) {
 
     return age >= min;
 }, minAge);
+*/

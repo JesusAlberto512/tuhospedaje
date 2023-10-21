@@ -23,10 +23,10 @@ class StoreLoginCodesRequest extends FormRequest
      */
     public function rules(): array
     {
-        $idValidate = $this->route('signup2') == NULL ? "": ','.($this->route('signup2')->code_id. ',code_id' );
+        //$idValidate = $this->route('signup2') == NULL ? "": ','.($this->route('signup2')->code_id. ',code_id' );
         return [
-            'carrier_code' => 'required|alpha|max:3|unique:login_codes,carrier_code'.$idValidate,
-            'phone' => 'required|numeric|min:8|max:10|unique:login_codes,phone'.$idValidate
+            'carrier_code' => 'required|numeric|min:2|max:3|unique:login_codes,carrier_code',
+            'phone' => 'required|alpha|min:8|max:20|unique:login_codes,phone',
         ];
     }
 

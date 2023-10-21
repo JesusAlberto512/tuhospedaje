@@ -9,7 +9,7 @@
 		<div class="p-5 mt-5 mb-5 border w-450">
 			<h2 class="thj-title">{{__('login or register')}}</h2>
                 <br/>
-				<form id="signup_form" name="signup_form" method="post" action="{{ route('authenticate.store',false) }}" class='signup-form login-form' accept-charset='UTF-8' >
+				<form id="signup_form" name="signup_form" method="post" action="{{ route('authenticate.store') }}" class='signup-form login-form' accept-charset='UTF-8' >
 					{{ csrf_field() }}
 					<div class="row text-16">
 						<input type="hidden" name='email_signup' id='form'>
@@ -27,7 +27,7 @@
 						<small class="thj-politics">{{__('terms and prices')}}</small>
 
 
-						<button type='submit' id="btn" class="btn pb-3 pt-3 text-15 button-reactangular vbtn-success w-100 ml-0 mr-0 mb-3"> <i class="spinner fa fa-spinner fa-spin d-none" ></i>
+						<button type='submit' id="btnPhone" class="btn pb-3 pt-3 text-15 button-reactangular vbtn-success w-100 ml-0 mr-0 mb-3"> <i class="spinner fa fa-spinner fa-spin d-none" ></i>
 							<span id="btn_next-text">{{ __('Sign Up') }}</span>
 						</button>
 					</div>

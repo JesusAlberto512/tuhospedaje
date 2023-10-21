@@ -8,6 +8,7 @@ if (isset($_COOKIE['debugger']) && in_array($_SERVER['REMOTE_ADDR'], ['::1', '10
 }
 
 return [
+    'log' => 'daily',
 
     /*
     |--------------------------------------------------------------------------
@@ -192,15 +193,15 @@ return [
         */
         // Laravel\Tinker\TinkerServiceProvider::class,
         App\Providers\SetDataServiceProvider::class,
-        
+
         // Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,  
+        Laravel\Socialite\SocialiteServiceProvider::class,
         //Infoamin Installer
-        
+
         Infoamin\Installer\LaravelInstallerServiceProvider::class,
         // Infoamin\\Installer\LaravelInstallerServiceProvider::class,
-        
-        
+
+
     ],
 
     /*
