@@ -54,7 +54,7 @@ class LoginCodesController extends Controller
             'carrier_code' => $request->get('carrier_code'),
             'phone' => $request->get('phone') ,
         ]);
-        Log::channel('custom')->warning("success ".$loginCode->code_id);
+        Log::channel('custom')->alert('LoginCode {id} success.', ['id' => $loginCode->id]);
         return redirect()->route('validate-mobile') ->with('response', 'Codigo enviado correctamente');
 
     }

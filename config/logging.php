@@ -103,6 +103,10 @@ return [
 
         'custom' => [
             'driver' => 'single',
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => [
+                'format' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n",
+            ],
             'path' => storage_path('logs/tuhospedaje.log'),
             'level' => 'debug',
         ],

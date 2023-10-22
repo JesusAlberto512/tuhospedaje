@@ -40,7 +40,7 @@ Route::group(['middleware' => ['locale']], function () {
 	Route::post('/checkUser/check', 'LoginController@check')->name('checkUser.check');
     Route::post('mobile-authenticate', [\App\Http\Controllers\LoginCodesController::class, 'store'])->name('authenticate.store');
     Route::get('validate-mobile-authenticate', 'LoginCodesController@show')->name('validate-mobile');
-    Route::post('validate-mobile-authenticate', 'LoginCodesController@edit')->name('validate-mobile.edit');
+    Route::post('validate-mobile-authenticate', 'LoginCodesController@update')->name('validate-mobile.update');
 });
 
 //Auth::routes();

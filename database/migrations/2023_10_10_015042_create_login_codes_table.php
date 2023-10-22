@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('expiration_time')->default('5');
             $table->string('phone');
             $table->integer('carrier_code');
+            $table->integer('verified')->default('0');
+            $table->timestamp('verified_date')->default(null);
             $table->timestamps();
 
             /*** index keys ***/
