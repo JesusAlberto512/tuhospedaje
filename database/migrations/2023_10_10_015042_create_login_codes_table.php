@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('login_codes', function (Blueprint $table) {
             $table->id('code_id');
-            $table->string('verification_code');
-            $table->string('expiration_time');
-            $table->integer('phone');
-            $table->string('carrier_code');
+            $table->integer('verification_code');
+            $table->integer('expiration_time')->default('5');
+            $table->string('phone');
+            $table->integer('carrier_code');
             $table->timestamps();
 
             /*** index keys ***/
