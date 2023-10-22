@@ -54,8 +54,8 @@ class LoginCodesController extends Controller
             'carrier_code' => $request->get('carrier_code'),
             'phone' => $request->get('phone') ,
         ]);
-        Log::channel('custom')->alert('LoginCode {id} success.', ['id' => $loginCode->id]);
-        return redirect()->route('validate-mobile') ->with('response', 'Codigo enviado correctamente');
+        Log::channel('custom')->info('LoginCode {id} success.', ['id' => $loginCode->code_id]);
+        return redirect()->route('validate-mobile') ->with('loginCode', $loginCode);
 
     }
 
@@ -67,7 +67,7 @@ class LoginCodesController extends Controller
      */
     public function show(LoginCodes $loginCodes)
     {
-        return view('home.validate_authentication');
+        //
     }
 
     /**
@@ -78,7 +78,7 @@ class LoginCodesController extends Controller
      */
     public function edit(LoginCodes $loginCodes)
     {
-        //
+        return view('home.validate_authentication')->with('loginCode', session('loginCode'));
     }
 
     /**
@@ -90,7 +90,16 @@ class LoginCodesController extends Controller
      */
     public function update(UpdateLoginCodesRequest $request, LoginCodes $loginCodes)
     {
-        //
+        Log::channel('custom')->info($request);
+        Log::channel('custom')->info($loginCodes);
+        if (LoginCodes::verifyCode($request->get('field04'), $request->get('field06'), $request->get('field02'))){
+            return redirect()->route('validate-mobile') ->with('error', 'Codigo Verificado');
+        }else{
+            Log::channel('custom')->error("Error");
+            $loginCodes->setAttribute('code_id', $request->get('field02'));
+            $loginCodes->setAttribute('phone', $request->get('field04'));
+            return redirect()->route('validate-mobile') ->with('loginCode', $loginCodes);
+        }
     }
 
     /**

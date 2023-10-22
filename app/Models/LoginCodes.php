@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class LoginCodes extends Model
 {
     use HasFactory;
-    protected $guarded =[];
+    /**
+     * Protected attributes that CANNOT be mass assigned.
+     *
+     * @var array
+     */
+    protected $guarded = [ 'code_id' ];
+
     /**
      * The primary key associated with the table.
      *
@@ -22,4 +28,24 @@ class LoginCodes extends Model
      * @var string
      */
     protected $table = 'login_codes';
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['verification_code'];
+
+    public static function verifyCode($phone, $code, $id){
+        $loginCode = self::where([
+            ['code_id', '=', $phone],
+            ['phone', '=', $phone],
+            ['verification_code', '=', $code],
+        ]);
+
+        if($loginCode->count()){
+            return true;
+        }
+        return false;
+    }
 }
