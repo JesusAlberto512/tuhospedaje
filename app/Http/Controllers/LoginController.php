@@ -88,6 +88,12 @@ class LoginController extends Controller
         return view('home.signup_login', $data);
     }
 
+    public function registration(Request $request)
+    {
+        $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
+        return view('home.registration', $data);
+    }
+
     public function autenticate(Request $request)
     {
         $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');

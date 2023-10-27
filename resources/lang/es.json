@@ -387,11 +387,11 @@
     "Sign up with Facebook": "Registrate con Facebook",
     "Sign up with Google": "Regístrese con Google",
     "or": "o",
-    "First Name": "Nombre de pila",
+    "First Name": "Nombre",
     "Last Name": "Apellido",
     "Phone": "Teléfono",
     "Password": "Contraseña",
-    "Birthday": "Cumpleaños",
+    "Birthday": "Fecha de nacimiento",
     "Month": "Mes",
     "Day": "Día",
     "Year": "Año",
@@ -735,5 +735,12 @@
     ":x Your payment is completed for :y": ":x Su pago se completa para :y",
     ":x Your payment is completed for :y . Admin will approve the booking very soon": ":x Su pago se completa para :y . El administrador aprobará la reserva muy pronto",
     "Please confirm your e-mail address": "Por favor confirme su dirección de correo electrónico",
-    "has been": "ha sido"
+    "has been": "ha sido",
+    "login or register": "Iniciar sesión o registrarse",
+    "terms and prices": "Te vamos a enviar a tu número de teléfono un mensaje de texto. Sujeto a las tarifas estándar para mensajes y datos.",
+    "Validation Code": "Código de Validación",
+    "confirm phone": "Confirmación de teléfono",
+    "guide sms": "Debes ingresar el código que hemos enviado con un SMS al:", 
+    "Register me": "Registrarme",
+    "Complete your register": "Complete su registro"
 }
