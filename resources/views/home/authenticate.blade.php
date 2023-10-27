@@ -19,14 +19,14 @@
 
 
 						<div class="form-group col-sm-12 p-0">
-                            <label for="first_name">{{ __('Phone') }}</label>
+                            <label for="phone">{{ __('Phone') }} <span class="text-13 text-danger">*</span></label>
 								<input type="tel" class="form-control text-14 p-2" id="phone" name="phone">
 								<span id="tel-error" class="text-13 text-danger"></span>
 								<span id="phone-error" class="text-13 text-danger"></span>
 						</div>
 						<small class="thj-politics">{{__('terms and prices')}}</small>
 
-
+						
 						<button type='submit' id="btnPhone" class="btn pb-3 pt-3 text-15 button-reactangular vbtn-success w-100 ml-0 mr-0 mb-3"> <i class="spinner fa fa-spinner fa-spin d-none" ></i>
 							<span id="btn_next-text">{{ __('Sign Up') }}</span>
 						</button>
@@ -80,7 +80,6 @@
 	let signedUpText = "{{ __('Sign Up') }}..";
 	let baseURL = "{{ url('/') }}";
 	let duplicateNumberCheckURL = "{{ url('duplicate-phone-number-check') }}";
-	let minAge = "{{ __('You are not old enough!') }}";
 </script>
 
 <script type="text/javascript" src="{{ asset('public/js/sign-up-login2.js') }}"></script>

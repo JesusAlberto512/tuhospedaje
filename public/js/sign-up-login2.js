@@ -1,83 +1,8 @@
 "use strict"
-/*$('select').on('change', function() {
-    var dobError = '';
-    var day = document.getElementById("user_birthday_day").value;
-    var month = document.getElementById("user_birthday_month").value;
-    var y = document.getElementById("user_birthday_year").value;
-    var year = parseInt(y);
-    var year2 = signup_form.birthday_year;
-    var age = 18;
 
-    var setDate = new Date(year + age, month - 1, day);
-    var currdate = new Date();
-    if (day == '' || month == '' || y == '') {
-        $('#dobError').html('<label class="text-danger">'+requiredFieldText+'</label>');
-        year2.focus();
-        return false;
-    }
-    else if (setDate > currdate) {
-        $('#dobError').html('<label class="text-danger">'+oldLimitationText+'</label>');
-            year2.focus();
-            return false;
-    } else {
-        $('#dobError').html('<span class="text-danger"></span>');
-        return true;
-    }
-});
-
-function ageValidate()
-{
-    var dobError = '';
-    var day = document.getElementById("user_birthday_month").value;
-    var month = document.getElementById("user_birthday_day").value;
-    var y = document.getElementById("user_birthday_year").value;
-    var year = parseInt(y);
-    var year2 = signup_form.birthday_year;
-    var age = 18;
-
-    var setDate = new Date(year + age, month - 1, day);
-    var currdate = new Date();
-    if (day == '' || month == '' || y == '') {
-        $('#dobError').html('<label class="text-danger">'+requiredFieldText+'</label>');
-        year2.focus();
-        return false;
-    }
-    else if (setDate > currdate) {
-        $('#dobError').html('<label class="text-danger">'+oldLimitationText+'</label>');
-        year2.focus();
-        return false;
-    } else {
-        $('#dobError').html('<span class="text-danger"></span>');
-        return true;
-    }
-}
 
 $('#signup_form').validate({
-    rules: {
-        last_name: {
-            required: true,
-            maxlength: 255
-        },
-        email: {
-            required: true,
-            maxlength: 255,
-            laxEmail: true
-        },
-        password: {
-            required: true,
-            minlength: 6
-        },
-        birthday_month: {
-            required: true
-        },
-        birthday_day: {
-            required: true
-        },
-        birthday_year: {
-            required: true,
-            minAge: 18
-        }
-    },
+    rules: {},
     submitHandler: function(form)
     {
 
@@ -87,83 +12,20 @@ $('#signup_form').validate({
             e.preventDefault();
         });
 
-
         $(".spinner").removeClass('d-none');
         $("#btn_next-text").text(signedUpText);
         return true;
     },
 
     errorPlacement: function (error, element) {
-        $('#user_birthday_month-error').addClass('d-none');
-        $('#user_birthday_day-error').addClass('d-none');
         error.insertAfter(element);
-        $('#user_birthday_year-error').addClass('d-none');
-
-    },
-
-    messages: {
-        last_name: {
-        required:  requiredFieldText,
-        maxlength: maxLengthText,
-    },
-    email: {
-        required:  requiredFieldText,
-        maxlength: maxLengthText,
-    },
-    password: {
-        required:  requiredFieldText,
-        minlength: minLengthText,
-    },
-    birthday_day: {
-        required:  requiredFieldText,
-    },
-    birthday_month: {
-        required:  requiredFieldText,
-    },
-    birthday_year: {
-        required:  requiredFieldText,
-    }
     }
 });
 
-jQuery.validator.addMethod("laxEmail", function(value, element) {
-    return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test( value );
-}, validEmailText );
-
-$(document).on('blur keyup', '#email', function() {
-    var emailError = '';
-    var email      = $('#email').val();
-    var _token     = $('input[name="_token"]').val();
-    $('.error-tag').html('').hide();
-    if (email != '') {
-    $.ajax({
-        url:checkUserURL,
-        method:"POST",
-        data:{
-                email:email,
-                "_token": _token,
-                },
-        success:function(result)
-        {
-            if (result == 'not_unique') {
-                $('#emailError').html('<label class="text-danger">'+emailExistText+'</label>');
-                $('#email').addClass('has-error');
-                $('#btn').attr('disabled', 'disabled');
-            } else {
-                $('#email').removeClass('has-error');
-                $('#emailError').html('');
-                $('#btn').attr('disabled', false);
-            }
-        }
-    })
-    } else {
-        $('#emailError').html('');
-    }
-
-});
-*/
 var hasPhoneError = false;
-var hasEmailError = false;
+$('form').find("button[type='submit']").prop('disabled', true);
+$('form').find("button[type='submit']").addClass('not-allowed'); 
+
 
 //jquery validation
 $.validator.setDefaults({
@@ -175,7 +37,6 @@ $.validator.setDefaults({
     },
     errorPlacement: function (error, element) {
             $('.error-tag').html('').hide();
-            $('#emailError').html('').hide();
             error.insertAfter(element);
     }
 });
@@ -253,6 +114,7 @@ $(document).ready(function()
     $("input[name=phone]").on('blur keyup', function(e)
     {
         formattedPhone();
+
         $('#btnPhone').attr('disabled', false);
         $('#phone').html('').css("border-color","none");
         if ($.trim($(this).val()) !== '') {
@@ -260,14 +122,15 @@ $(document).ready(function()
                 $('#tel-error').addClass('error').html(validInternationalNumber).css("font-weight", "bold");
                 hasPhoneError = true;
                 $('#btn').attr('disabled','disabled');
-                $('#phone').css("border-color","#a94442");
                 $('#phone-error').hide();
+                enableDisableButton();
+
             } else {
 
                 var phone = $(this).val().replace(/-|\s/g,""); //replaces 'whitespaces', 'hyphens'
                 var phone = $(this).val().replace(/^0+/,"");  //replaces (leading zero - for BD phone number)
                 var pluginCarrierCode = $('#phone').intlTelInput('getSelectedCountryData').dialCode;
-                $.ajax({
+               /* $.ajax({
                     url: duplicateNumberCheckURL,
                     method: "POST",
                     dataType: "json",
@@ -288,20 +151,23 @@ $(document).ready(function()
                             enableDisableButton();
                         }
                     } else if (response.status == false) {
-                        $('#phone-error').html('');
+                        
                         hasPhoneError = false;
                         enableDisableButton();
                     }
-                });
+                });*/
+                $('#phone-error').html('');
                 $('#tel-error').html('');
                 $('#phone-error').show();
                 hasPhoneError = false;
+                $('#phone').html('').css("border-color","none");
                 enableDisableButton();
             }
         } else {
             $('#tel-error').html('');
             $('#phone-error').html('');
             hasPhoneError = false;
+            $('#phone').html('').css("border-color","none");
             enableDisableButton();
         }
     });
@@ -318,10 +184,13 @@ function formattedPhone()
 function enableDisableButton() {
     if (!hasPhoneError) {
         $('form').find("button[type='submit']").prop('disabled', false);
+        $('form').find("button[type='submit']").removeClass('not-allowed'); 
     } else {
         $('form').find("button[type='submit']").prop('disabled', true);
+        $('form').find("button[type='submit']").addClass('not-allowed'); 
     }
 }
+
 /*
 $.validator.addMethod("minAge", function(value, element, min) {
     var today = new Date();
