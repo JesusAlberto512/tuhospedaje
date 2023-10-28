@@ -9,7 +9,7 @@
 		<div class="p-5 mt-5 mb-5 border w-450">
 				<h2 class="thj-title">{{__('Complete your register')}}</h2>
 				<br/>
-				<form id="signup_form" name="signup_form" method="post" action="{{ url('create') }}" class='signup-form login-form' accept-charset='UTF-8' onsubmit="return ageValidate();">
+				<form id="signup_form" name="signup_form" method="post" action="{{ route('registration.create') }}" class='signup-form login-form' accept-charset='UTF-8' onsubmit="return ageValidate();">
 					{{ csrf_field() }}
 					<div class="row text-16">
 						<input type="hidden" name='email_signup' id='form'>
@@ -100,7 +100,7 @@
 					</div>
 				</form>
 
-				 
+
 			</div>
     </div>
 </div>

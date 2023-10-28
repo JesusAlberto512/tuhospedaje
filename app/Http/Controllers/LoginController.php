@@ -88,24 +88,6 @@ class LoginController extends Controller
         return view('home.signup_login', $data);
     }
 
-    public function registration(Request $request)
-    {
-        $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
-        return view('home.registration', $data);
-    }
-
-    public function autenticate(Request $request)
-    {
-        $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
-        return view('home.authenticate', $data);
-    }
-
-    public function validateConfirmationCode (Request $request)
-    {
-        return view('home.validate_authentication');
-
-    }
-
     public function forgotPassword(Request $request, EmailController $email_controller)
     {
         if (!$request->isMethod('post')) {
