@@ -1,5 +1,5 @@
 "use strict"
-
+//ajustado jurdaneta ver 1 27102023
 
 $('#signup_form').validate({
     rules: {},
@@ -70,35 +70,6 @@ $(document).ready(function()
                 $('#phone-error').hide();
             } else  {
                 $('#tel-error').html('');
-
-                $.ajax({
-                    method: "POST",
-                    url: duplicateNumberCheckURL,
-                    dataType: "json",
-                    cache: false,
-                    data: {
-                        "_token": token,
-                        'phone': $.trim($(this).val()),
-                        'carrier_code': $.trim(countryData.dialCode),
-                    }
-                })
-                .done(function(response)
-                {
-                    if (response.status == true) {
-                        $('#tel-error').html('');
-                        $('#phone-error').show();
-
-                        $('#phone-error').addClass('error').html(response.fail).css("font-weight", "bold");
-                        hasPhoneError = true;
-                        enableDisableButton();
-                    } else if (response.status == false) {
-                        $('#tel-error').show();
-                        $('#phone-error').html('');
-
-                        hasPhoneError = false;
-                        enableDisableButton();
-                    }
-                });
             }
         } else {
             $('#tel-error').html('');
@@ -130,32 +101,7 @@ $(document).ready(function()
                 var phone = $(this).val().replace(/-|\s/g,""); //replaces 'whitespaces', 'hyphens'
                 var phone = $(this).val().replace(/^0+/,"");  //replaces (leading zero - for BD phone number)
                 var pluginCarrierCode = $('#phone').intlTelInput('getSelectedCountryData').dialCode;
-               /* $.ajax({
-                    url: duplicateNumberCheckURL,
-                    method: "POST",
-                    dataType: "json",
-                    data: {
-                        'phone': phone,
-                        'carrier_code': pluginCarrierCode,
-                        '_token': token,
-                    }
-                })
-                .done(function(response)
-                {
-                    if (response.status == true) {
-                        if (phone.length == 0) {
-                            $('#phone-error').html('');
-                        } else {
-                            $('#phone-error').addClass('error').html(response.fail).css("font-weight", "bold");
-                            hasPhoneError = true;
-                            enableDisableButton();
-                        }
-                    } else if (response.status == false) {
-                        
-                        hasPhoneError = false;
-                        enableDisableButton();
-                    }
-                });*/
+
                 $('#phone-error').html('');
                 $('#tel-error').html('');
                 $('#phone-error').show();
@@ -190,19 +136,3 @@ function enableDisableButton() {
         $('form').find("button[type='submit']").addClass('not-allowed'); 
     }
 }
-
-/*
-$.validator.addMethod("minAge", function(value, element, min) {
-    var today = new Date();
-    var birthDate = new Date(value);
-    var age = today.getFullYear() - birthDate.getFullYear();
-
-    if (age > min+1) { return true; }
-
-    var m = today.getMonth() - birthDate.getMonth();
-
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; }
-
-    return age >= min;
-}, minAge);
-*/
