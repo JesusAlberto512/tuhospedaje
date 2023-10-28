@@ -53,7 +53,7 @@ $.validator.setDefaults({
     }
 });
 
-   
+
 
 
 $(document).ready(function()
@@ -61,41 +61,41 @@ $(document).ready(function()
     enableDisableButton();
     $("input[name=validation_code]").on('blur keyup', function(e)
     {
-        
+
         $('#btn').attr('disabled', false);
-        
+
         if ($('#validation_code').val() !== '') {
             if ($('#validation_code').val().length == 6) {
                 $('#code-error').addClass('error').css("font-weight", "bold");
                 hasCodeError = false;
                 $('#btn').attr('disabled','disabled');
                 enableDisableButton();
-                $('form').submit(); 
+                $('#form_verify_code').submit();
             } else {
-               
-                $('#code-error').html('');
+
+                $('#code-error').html('CAMBIAR POR EL ERROR');
                 $('#code-error').show();
                 hasCodeError = true;
                 enableDisableButton();
             }
         } else {
-            $('#code-error').html('');
-            $('#code-error').html('');
+            $('#code-error').html('CAMBIAR POR EL ERROR');
+            $('#code-error').show();
             hasCodeError = true;
             enableDisableButton();
         }
     });
-    $('#validation_code').focus(); 
+    $('#validation_code').focus();
 });
 
 
 function enableDisableButton() {
     if (!hasCodeError) {
-        $('form').find("button[type='submit']").prop('disabled', false);
-        $('form').find("button[type='submit']").removeClass('not-allowed');
+        $('#form_verify_code').find("button[type='submit']").prop('disabled', false);
+        $('#form_verify_code').find("button[type='submit']").removeClass('not-allowed');
     } else {
-        $('form').find("button[type='submit']").prop('disabled', true);
-        $('form').find("button[type='submit']").addClass('not-allowed'); 
+        $('#form_verify_code').find("button[type='submit']").prop('disabled', true);
+        $('#form_verify_code').find("button[type='submit']").addClass('not-allowed');
     }
 }
 

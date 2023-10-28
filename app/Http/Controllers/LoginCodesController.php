@@ -90,10 +90,12 @@ class LoginCodesController extends Controller
      */
     public function update(UpdateLoginCodesRequest $request, LoginCodes $loginCodes)
     {
-        Log::channel('custom')->info($request);
-        Log::channel('custom')->info($loginCodes);
-        if (LoginCodes::verifyCode($request->get('field04'), $request->get('field06'), $request->get('field02'))){
-            return redirect()->route('validate-mobile') ->with('error', 'Codigo Verificado');
+        Log::channel('custom')->info("update".$request);
+        Log::channel('custom')->info("update".$loginCodes);
+        if (LoginCodes::verifyCode($request->get('field04'), $request->get('validation_code'), $request->get('field02'))){
+            $loginCodes->setAttribute('code_id', $request->get('field02'));
+            $loginCodes->setAttribute('phone', $request->get('field04'));
+            return redirect()->route('registration')->with('loginCode', $loginCodes);
         }else{
             Log::channel('custom')->error("Error");
             $loginCodes->setAttribute('code_id', $request->get('field02'));

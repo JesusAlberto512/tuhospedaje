@@ -38,7 +38,7 @@ class LoginCodes extends Model
 
     public static function verifyCode($phone, $code, $id){
         $loginCode = self::where([
-            ['code_id', '=', $phone],
+            ['code_id', '=', $id],
             ['phone', '=', $phone],
             ['verification_code', '=', $code],
         ]);

@@ -38,7 +38,7 @@ Route::group(['middleware' => ['locale']], function () {
 	Route::get('set-slug/', 'PropertyController@set_slug');
 	Route::get('signup', 'LoginController@signup');
 	//Route::get('register', 'LoginController@register');
-	Route::get('registration', [\App\Http\Controllers\LoginController::class, 'registration']);
+	Route::get('registration', [\App\Http\Controllers\LoginController::class, 'registration'])->name('registration');
     Route::get('mobile-authenticate', [\App\Http\Controllers\LoginCodesController::class, 'create']);
 	Route::post('/checkUser/check', 'LoginController@check')->name('checkUser.check');
     Route::post('mobile-authenticate', [\App\Http\Controllers\LoginCodesController::class, 'store'])->name('authenticate.store');
