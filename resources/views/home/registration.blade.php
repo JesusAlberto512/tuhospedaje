@@ -24,13 +24,13 @@
 						</div>
 
 						<div class="form-group col-sm-12 p-0">
-                            <label for="first_name">{{ __('Last Name') }} <span class="text-13 text-danger">*</span></label>
+                            <label for="last_name">{{ __('Last Name') }} <span class="text-13 text-danger">*</span></label>
 								@if ( $errors->has('last_name') ) <p class="error-tag">{{ $errors->first('last_name') }}</p> @endif
 								<input type="text" class='form-control text-14 p-2' value="{{ old('last_name') }}" name='last_name' id='last_name' placeholder='{{ __('Last Name') }}'>
 						</div>
 
 						<div class="form-group col-sm-12 p-0">
-                            <label for="first_name">{{ __('Email') }} <span class="text-13 text-danger">*</span></label>
+                            <label for="email">{{ __('Email') }} <span class="text-13 text-danger">*</span></label>
 								<input type="text" class='form-control text-14 p-2' value="{{ old('email') }}" name='email' id='email' placeholder='{{ __('Email') }}'>
 								@if ($errors->has('email'))
 									<p class="error-tag">
@@ -41,13 +41,13 @@
 						</div>
 
 						<div class="form-group col-sm-12 p-0">
-                            <label for="first_name">{{ __('Password') }} <span class="text-13 text-danger">*</span></label>
+                            <label for="password">{{ __('Password') }} <span class="text-13 text-danger">*</span></label>
 								@if ( $errors->has('password') ) <p class="error-tag">{{ $errors->first('password') }}</p> @endif
 								<input type="password" class='form-control text-14 p-2' name='password' id='password' placeholder='{{ __('Password') }}'>
 						</div>
 
 						<div class="col-sm-12 p-0">
-							<label class="l-pad-none text-14">{{ __('Birthday') }} <span class="text-13 text-danger">*</span></label>
+							<label class="l-pad-none text-16">{{ __('Birthday') }} <span class="text-13 text-danger">*</span></label>
 						</div>
 
 						<div class="col-sm-12 p-0">
@@ -61,15 +61,6 @@
 
 						<div class="form-group col-sm-12 p-0">
 								<div class="row">
-									<div class="col-sm-4 pl-0 mt-2">
-											<select name='birthday_month' class='form-control text-14 p-2' id='user_birthday_month'>
-												<option value=''>{{ __('Month') }}</option>
-												@for ($m=1; $m<=12; ++$m)
-													<option value="{{ $m }}" {{ old('birthday_month') == $m ? 'selected = "selected"' : '' }}>{{ date('F', mktime(0, 0, 0, $m, 1)) }}</option>
-												@endfor
-											</select>
-									</div>
-
 									<div class="col-sm-4 mt-2">
 										<select name='birthday_day' class='form-control text-14' id='user_birthday_day'>
 											<option value=''>{{ __('Day') }}</option>
@@ -77,6 +68,24 @@
 											<option value="{{ $m }}" {{ old('birthday_day') == $m ? 'selected = "selected"' : '' }}>{{ $m }}</option>
 											@endfor
 										</select>
+									</div>
+
+									<div class="col-sm-4 pl-0 mt-2">
+											<select name='birthday_month' class='form-control text-14 p-2' id='user_birthday_month'>
+												<option value=''>{{ __('Month') }}</option>
+													<option value="1" {{ old('birthday_month') == 1 ? 'selected = "selected"' : '' }}>{{ __('January') }}</option>
+													<option value="2" {{ old('birthday_month') == 2 ? 'selected = "selected"' : '' }}>{{ __('February') }}</option>
+													<option value="3" {{ old('birthday_month') == 3 ? 'selected = "selected"' : '' }}>{{ __('March') }}</option>
+													<option value="4" {{ old('birthday_month') == 4 ? 'selected = "selected"' : '' }}>{{ __('April') }}</option>
+													<option value="5" {{ old('birthday_month') == 5 ? 'selected = "selected"' : '' }}>{{ __('May') }}</option>
+													<option value="6" {{ old('birthday_month') == 6 ? 'selected = "selected"' : '' }}>{{ __('June') }}</option>
+													<option value="7" {{ old('birthday_month') == 7 ? 'selected = "selected"' : '' }}>{{ __('July') }}</option>
+													<option value="8" {{ old('birthday_month') == 8 ? 'selected = "selected"' : '' }}>{{ __('August') }}</option>
+													<option value="9" {{ old('birthday_month') == 9 ? 'selected = "selected"' : '' }}>{{ __('September') }}</option>
+													<option value="10" {{ old('birthday_month') == 10 ? 'selected = "selected"' : '' }}>{{ __('October') }}</option>
+													<option value="11" {{ old('birthday_month') == 11 ? 'selected = "selected"' : '' }}>{{ __('November') }}</option>
+													<option value="12" {{ old('birthday_month') == 12 ? 'selected = "selected"' : '' }}>{{ __('December') }}</option>
+											</select>
 									</div>
 
 									<div class="col-sm-4 pr-0 mt-2">

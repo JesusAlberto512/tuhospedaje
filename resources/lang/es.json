@@ -742,5 +742,18 @@
     "confirm phone": "Confirmación de teléfono",
     "guide sms": "Debes ingresar el código que hemos enviado con un SMS al:", 
     "Register me": "Registrarme",
-    "Complete your register": "Complete su registro"
+    "Complete your register": "Complete su registro", 
+    "January": "Enero", 
+    "February": "Febrero", 
+    "March": "Marzo", 
+    "April": "Abril", 
+    "May": "Mayo", 
+    "June": "Junio",
+    "July": "Julio", 
+    "August": "Agosto", 
+    "September": "Septiembre", 
+    "October": "Octubre", 
+    "November": "Noviembre", 
+    "December": "Dicimebre"
+
 }
