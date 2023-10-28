@@ -20,18 +20,18 @@
 						<div class="form-group col-sm-12 p-0">
                             <label for="first_name">{{ __('First Name') }} <span class="text-13 text-danger">*</span></label>
 							@if ($errors->has('first_name')) <p class="error-tag">{{ $errors->first('first_name') }}</p> @endif
-							<input type="text" class='form-control text-14 p-2' value="{{ old('first_name') }}" name='first_name' id='first_name' placeholder='{{ __('First Name') }}'>
+							<input type="text" class='form-control text-14 p-2' value="{{ old('first_name') }}" name='first_name' id='first_name' placeholder='{{ __('First Name') }}' maxlength="25">
 						</div>
 
 						<div class="form-group col-sm-12 p-0">
                             <label for="last_name">{{ __('Last Name') }} <span class="text-13 text-danger">*</span></label>
 								@if ( $errors->has('last_name') ) <p class="error-tag">{{ $errors->first('last_name') }}</p> @endif
-								<input type="text" class='form-control text-14 p-2' value="{{ old('last_name') }}" name='last_name' id='last_name' placeholder='{{ __('Last Name') }}'>
+								<input type="text" class='form-control text-14 p-2' value="{{ old('last_name') }}" name='last_name' id='last_name' placeholder='{{ __('Last Name') }}' maxlength="25">
 						</div>
 
 						<div class="form-group col-sm-12 p-0">
                             <label for="email">{{ __('Email') }} <span class="text-13 text-danger">*</span></label>
-								<input type="text" class='form-control text-14 p-2' value="{{ old('email') }}" name='email' id='email' placeholder='{{ __('Email') }}'>
+								<input type="text" class='form-control text-14 p-2' value="{{ old('email') }}" name='email' id='email' placeholder='{{ __('Email') }}' maxlength="100">
 								@if ($errors->has('email'))
 									<p class="error-tag">
 									{{ $errors->first('email') }}
@@ -43,7 +43,7 @@
 						<div class="form-group col-sm-12 p-0">
                             <label for="password">{{ __('Password') }} <span class="text-13 text-danger">*</span></label>
 								@if ( $errors->has('password') ) <p class="error-tag">{{ $errors->first('password') }}</p> @endif
-								<input type="password" class='form-control text-14 p-2' name='password' id='password' placeholder='{{ __('Password') }}'>
+								<input type="password" class='form-control text-14 p-2' name='password' id='password' placeholder='{{ __('Password') }}' maxlength="25">
 						</div>
 
 						<div class="col-sm-12 p-0">
