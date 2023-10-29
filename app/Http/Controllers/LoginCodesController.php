@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\LoginCodes;
-use App\Http\Controllers\Controller;
+use App\Http\{
+    Controllers\Controller,
+    Controllers\EmailController,
+
+};
 use App\Http\Requests\StoreLoginCodesRequest;
 use App\Http\Requests\UpdateLoginCodesRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
-use App\Models\{Settings};
+use App\Models\{Settings, User};
 use Illuminate\Support\Facades\Log;
+use Auth, Validator, Socialite, DateTime, Hash, DB, Session, Common;
 
 class LoginCodesController extends Controller
 {
+    protected $helper;
+
+    public function __construct()
+    {
+        $this->helper = new Common;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,9 +65,20 @@ class LoginCodesController extends Controller
             'carrier_code' => $request->get('carrier_code'),
             'phone' => $request->get('phone') ,
         ]);
-        Log::channel('custom')->info('LoginCode {id} success.', ['id' => $loginCode->code_id]);
-        return redirect()->route('validate-mobile') ->with('loginCode', $loginCode);
-
+        if($loginCode != null && $loginCode->code_id != null){
+            Log::channel('custom')->info('LoginCode {$id} success.', ["id" => $loginCode->code_id]);
+            Log::info('Showing the user profile for user: {id}', ["id" => $loginCode->code_id]);
+            Log::info('Enviando mensaje');
+            $response = Common::sendSMS($request->get('carrier_code').$request->get('phone'), $code);
+            $data = json_decode($response);
+            if($data->estado == "ok"){
+                Log::info("Mensaje response {data}", ["data" => $data]);
+                Log::info('Mensaje Enviado');
+                return redirect()->route('validate-mobile') ->with('loginCode', $loginCode);
+            }else{
+                Log::error("Mensaje No enviado: response {data}", ["data" => $data]);
+            }
+        }
     }
 
     /**
@@ -86,16 +108,34 @@ class LoginCodesController extends Controller
      *
      * @param  \App\Http\Requests\UpdateLoginCodesRequest  $request
      * @param  \App\Models\LoginCodes  $loginCodes
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function update(UpdateLoginCodesRequest $request, LoginCodes $loginCodes)
     {
         Log::channel('custom')->info("update".$request);
         Log::channel('custom')->info("update".$loginCodes);
         if (LoginCodes::verifyCode($request->get('field04'), $request->get('validation_code'), $request->get('field02'))){
-            $loginCodes->setAttribute('code_id', $request->get('field02'));
-            $loginCodes->setAttribute('phone', $request->get('field04'));
-            return redirect()->route('registration')->with('loginCode', $loginCodes);
+            if(User::allReadyExist($request->get('field00'), $request->get('field04'))){
+                $user = User::where('carrier_code', $request->get('field00'))->where('phone', $request->get('field04'))->first();
+                Log::info("us {%user%} ", ["user" => $user]);
+                if($user != null){
+                    if (Auth::attempt(['email' => $user->email, 'password' => $user->password])) {
+                        $this->helper->one_time_message('success', __('You have registered successfully.').'');
+                        return redirect()->intended('dashboard');
+                    } else {
+                        $this->helper->one_time_message('danger', __('Log In Failed. Please Check Your Email/Password.'));
+                        return redirect('login');
+                    }
+                } else {
+                    $this->helper->one_time_message('danger', __('Log In Failed. Please Check Your Email/Password.'));
+                    return redirect('login');
+                }
+            }else{
+                $loginCodes->setAttribute('code_id', $request->get('field02'));
+                $loginCodes->setAttribute('phone', $request->get('field04'));
+                return redirect()->route('registration')->with('loginCode', $loginCodes);
+            }
+
         }else{
             Log::channel('custom')->error("Error");
             $loginCodes->setAttribute('code_id', $request->get('field02'));

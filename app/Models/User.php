@@ -121,4 +121,17 @@ class User extends Authenticatable
         $full_name = ucfirst($this->attributes['first_name']).' '.ucfirst($this->attributes['last_name']);
         return $full_name;
     }
+
+    public static function allReadyExist($carrier_code, $phone): bool
+    {
+        $user = self::where([
+            ['phone', '=', $phone],
+            ['carrier_code', '=', $carrier_code],
+        ]);
+
+        if($user->count()){
+            return true;
+        }
+        return false;
+    }
 }

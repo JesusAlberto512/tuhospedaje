@@ -36,7 +36,8 @@ class LoginCodes extends Model
      */
     protected $hidden = ['verification_code'];
 
-    public static function verifyCode($phone, $code, $id){
+    public static function verifyCode($phone, $code, $id): bool
+    {
         $loginCode = self::where([
             ['code_id', '=', $id],
             ['phone', '=', $phone],

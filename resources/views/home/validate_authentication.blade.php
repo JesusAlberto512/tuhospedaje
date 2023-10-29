@@ -7,10 +7,10 @@
 	<div class="container margin-top-65 min-height">
 	    <div class="d-flex justify-content-center ">
 			<div class="p-5 mt-5 mb-5 border w-450 floting-window">
-				
+
 				<h2 class="thj-title"><a href="{{ url('mobile-authenticate') }}"><i class="fas fa-angle-left mr-3 text-18 align-middle"></i></a>{{__('confirm phone')}}</h2>
 				<small class="thj-politics">{{__('guide sms')}}<br/></small>
-				<small class="thj-politics">+56 978949157<br/></small>
+				<small class="thj-politics">+{{session('loginCode')->carrier_code}} {{session('loginCode')->phone}}<br/></small>
 				<br/>
 				<hr/>
 					<form id="form_verify_code" name="form_verify_code" method="post" action="{{ route('validate-mobile.update') }}" class='signup-form login-form' accept-charset='UTF-8'>
@@ -18,6 +18,7 @@
 						<div class="row text-16">
 	                        @if (session('loginCode'))
 	                            <input type="hidden" name="field02" id="field02" class="form-control" value="{{session('loginCode')->code_id}}">
+                                <input type="hidden" name="field00" id="field00" class="form-control" value="{{session('loginCode')->carrier_code}}">
 	                            <input type="hidden" name="field04" id="field04" class="form-control" value="{{session('loginCode')->phone}}">
 	                        @endif
 
@@ -60,7 +61,7 @@
 	var token = "{{ csrf_token() }}";
 	let signedUpText = "{{ __('Sign Up') }}..";
 	let baseURL = "{{ url('/') }}";
-	
+
 </script>
 
 <script type="text/javascript" src="{{ asset('public/js/validate-authentication.js') }}"></script>

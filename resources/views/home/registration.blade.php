@@ -15,8 +15,9 @@
 						<div class="row text-16">
 							<input type="hidden" name='email_signup' id='form'>
 							<input type="hidden" name="default_country" id="default_country" class="form-control">
-							<input type="hidden" name="carrier_code" id="carrier_code" class="form-control">
-							<input type="hidden" name="formatted_phone" id="formatted_phone" class="form-control">
+							<input type="hidden" name="carrier_code" id="carrier_code" class="form-control" value="{{session('loginCode')->carrier_code}}">
+                            <input type="hidden" name="phone" id="phone" class="form-control" value="{{session('loginCode')->phone}}">
+							<input type="hidden" name="formatted_phone" id="formatted_phone" class="form-control" value="+{{session('loginCode')->carrier_code}}{{session('loginCode')->phone}}" >
 
 							<div class="form-group col-sm-12 p-0">
 	                            <label for="first_name">{{ __('First Name') }} <span class="text-13 text-danger">*</span></label>
