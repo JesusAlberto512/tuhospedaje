@@ -28,3 +28,9 @@ input[type=number] {
 }
 
 .not-allowed {cursor: not-allowed;}
+
+.floting-window {
+  background-color: white;
+  border-radius: 13px;
+  opacity: 0.95;
+}

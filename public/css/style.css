@@ -2607,6 +2607,10 @@ li.edit-verifications-list-item p {
 		margin-top: 8.5rem;
 	}
 
+	.margin-top-65 {
+		margin-top: 6.5rem;
+	}
+
 	.active-nav {
 		border-bottom: .3rem solid #1dbf73;
 		font-weight: 700;

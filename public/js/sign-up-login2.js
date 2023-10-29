@@ -86,9 +86,11 @@ $(document).ready(function()
     {
         formattedPhone();
 
-        $('#btnPhone').attr('disabled', false);
+        $('#btnPhone').attr('disabled', true);
         $('#phone').html('').css("border-color","none");
+        
         if ($.trim($(this).val()) !== '') {
+
             if (!$(this).intlTelInput("isValidNumber") || !isValidPhoneNumber($.trim($(this).val()))) {
                 $('#tel-error').addClass('error').html(validInternationalNumber).css("font-weight", "bold");
                 hasPhoneError = true;
@@ -112,7 +114,7 @@ $(document).ready(function()
         } else {
             $('#tel-error').html('');
             $('#phone-error').html('');
-            hasPhoneError = false;
+            hasPhoneError = true;
             $('#phone').html('').css("border-color","none");
             enableDisableButton();
         }

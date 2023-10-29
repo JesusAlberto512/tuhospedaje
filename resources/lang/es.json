@@ -384,8 +384,8 @@
     "Yes": "Sí",
     "Added to favourite list.": "Agregado a la lista favorita.",
     "Removed from favourite list": "Eliminado de la lista favorita",
-    "Sign up with Facebook": "Ingresa con Facebook",
-    "Sign up with Google": "Ingresa con Google",
+    "Sign up with Facebook": "Ingresar con Facebook",
+    "Sign up with Google": "Ingresar con Google",
     "or": "o",
     "First Name": "Nombre",
     "Last Name": "Apellido",
@@ -754,6 +754,8 @@
     "September": "Septiembre", 
     "October": "Octubre", 
     "November": "Noviembre", 
-    "December": "Dicimebre"
+    "December": "Dicimebre",
+    "Sign up with Mail": "Ingresar con mi cuenta", 
+    "login": "Iniciar sesión"
 
 }
