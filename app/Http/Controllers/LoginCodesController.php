@@ -69,9 +69,9 @@ class LoginCodesController extends Controller
             Log::channel('custom')->info('LoginCode {$id} success.', ["id" => $loginCode->code_id]);
             Log::info('Showing the user profile for user: {id}', ["id" => $loginCode->code_id]);
             Log::info('Enviando mensaje');
-            $response = Common::sendSMS($request->get('carrier_code').$request->get('phone'), $code);
+            $response = Common::sendWhatsApp($request->get('carrier_code').$request->get('phone'), $code);
             $data = json_decode($response);
-            if($data->estado == "ok"){
+            if($data->sent){
                 Log::info("Mensaje response {data}", ["data" => $data]);
                 Log::info('Mensaje Enviado');
                 return redirect()->route('validate-mobile') ->with('loginCode', $loginCode);
