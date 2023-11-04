@@ -30,9 +30,9 @@
 
                     <div class="ml-2">
                         <h3 class="text-20 mt-4"><strong>{{ $result->name }}</strong></h3>
-                        <span class="text-14 gray-text"><i class="fas fa-map-marker-alt"></i> 
-                            {{ $result->property_address->city }} @if ($result->property_address->city !=''),@endif 
-                            {{ $result->property_address->state }} @if ($result->property_address->state !=''),@endif 
+                        <span class="text-14 gray-text"><i class="fas fa-map-marker-alt"></i>
+                            {{ $result->property_address->city }} @if ($result->property_address->city !=''),@endif
+                            {{ $result->property_address->state }} @if ($result->property_address->state !=''),@endif
                             {{ $result->property_address->countries->name }}
                         </span>
                         @if ($result->avg_rating)
@@ -458,7 +458,7 @@
                     @endif
                 </div>
                 <hr>
-                
+
             </div>
 
             <!--Start Reviews-->
@@ -974,27 +974,27 @@
                                         </div>
                                     @endif
                                     <div>
-                                        <strong>{{ __('Property type') }}:</strong> 
+                                        <strong>{{ __('Property type') }}:</strong>
                                         {{ $result?->property_type_name }}
                                     </div>
                                     <div>
-                                        <strong>{{ __('Accommodates') }}:</strong> 
+                                        <strong>{{ __('Accommodates') }}:</strong>
                                         {{ $result?->accommodates }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div>
-                                        <strong>{{ __('Bedrooms') }}:</strong> 
+                                        <strong>{{ __('Bedrooms') }}:</strong>
                                         {{ $result?->bedrooms }}
                                     </div>
 
                                     <div>
-                                        <strong>{{ __('Bathrooms') }}:</strong> 
+                                        <strong>{{ __('Bathrooms') }}:</strong>
                                         {{ $result?->bathrooms }}
                                     </div>
 
                                     <div>
-                                        <strong>{{ __('Beds') }}:</strong> 
+                                        <strong>{{ __('Beds') }}:</strong>
                                         {{ $result?->beds }}
                                     </div>
                                 </div>
@@ -1115,7 +1115,7 @@
                                     <i class="fa fa-calendar-minus mr-2 text-13" style="color: #5d717fa2" aria-hidden="true"></i>
                                     {{ __('Weekend pricing') }}:
                                     <strong>
-                                        <span id="weekly_price_string">{!! $symbol !!} {{ $result->property_price->weekend_price }}</span> 
+                                        <span id="weekly_price_string">{!! $symbol !!} {{ $result->property_price->weekend_price }}</span>
                                         / {{ __('Weekend Night') }}
                                     </strong>
                                 </div>
@@ -1666,7 +1666,7 @@
                             <div>
                                 <ul class="list-inline">
                                     <li class="list-inline-item  pl-4 pr-4 border rounded-3 mt-4 bg-light text-dark">
-                                        <div class="vtooltip"> 
+                                        <div class="vtooltip">
                                             <i class="fas fa-user-friends"></i> {{ $row_similar->accommodates }}
                                             <span class="vtooltiptext text-14">{{ $row_similar->accommodates }}
                                                 {{ __('Guest') }}</span>
@@ -1865,7 +1865,7 @@
 @endsection
 
 @section('validation_script')
-    <script type="text/javascript" src='https://maps.google.com/maps/api/js?key={{ config("Tuhospedaje.google_map_key") }}&libraries=places'></script>
+    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places'></script>
     @auth
     <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
     @endauth
@@ -1902,7 +1902,7 @@
 
     <script type="text/javascript" src="{{ asset('public/js/single-property.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/front.min.js') }}"></script>
-    
+
 @endsection
 
 

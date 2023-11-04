@@ -2,7 +2,7 @@
 @push('css')
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/daterangepicker.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/user-front.min.css') }}" />
-    
+
 @endpush
 
 @section('main')
@@ -58,7 +58,7 @@
 										</div>
 									</div>
 
-									
+
 
 									<div class="col-md-12 front-search mt-5 pb-3 ">
 										<button type="submit" class="btn vbtn-default btn-block p-3 text-16">{{ __('Search') }}</button>
@@ -250,7 +250,7 @@
 @stop
 
 @section('validation_script')
-	<script type="text/javascript" src='https://maps.google.com/maps/api/js?key={{ config("Tuhospedaje.google_map_key") }}&libraries=places'></script>
+	<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places'></script>
 	<script type="text/javascript" src="{{ asset('public/js/moment.min.js') }}"></script>
 	<script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('public/js/daterangepicker.min.js') }}"></script>
@@ -269,7 +269,7 @@
         var dateFormat = '{{ $date_format }}';
     </script>
     <script src="{{ asset('public/js/front.min.js') }}"></script>
-    
+
 @endsection
 
 

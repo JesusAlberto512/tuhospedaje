@@ -27,7 +27,7 @@ class SearchController extends Controller
     {
         $location = $request->input('location');
         $address = str_replace(" ", "+", "$location");
-        $map_where = 'https://maps.google.com/maps/api/geocode/json?key=' . config("Tuhospedaje.google_map_key") . '&address=' . $address . '&sensor=false';
+        $map_where = 'https://maps.googleapis.com/maps/api/js?key=' . config("vrent.google_map_key") . '&address=' . $address . '&sensor=false';
         $geocode = $this->content_read($map_where);
         $json = json_decode($geocode);
 
@@ -129,7 +129,7 @@ class SearchController extends Controller
         $space_type_val = [];
 
         $address = str_replace([" ", "%2C"], ["+", ","], "$full_address");
-        $map_where = 'https://maps.google.com/maps/api/geocode/json?key=' . config("Tuhospedaje.google_map_key") . '&address=' . $address . '&sensor=false&libraries=places';
+        $map_where = 'https://maps.googleapis.com/maps/api/js?key=' . config("vrent.google_map_key") . '&address=' . $address . '&sensor=false&libraries=places';
         $geocode = $this->content_read($map_where);
         $json = json_decode($geocode);
 
