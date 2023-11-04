@@ -30,10 +30,10 @@
 
                         @if (!Auth::check())
                             <div class="nav-item">
-                                <a class="nav-link strip-left" href="{{ url('signup') }}" aria-label="signup">{{ __('Sign Up') }}</a>
+                                <a class="nav-link strip-left" href="{{ url('mobile-authenticate') }}" aria-label="signup">{{ __('Sign Up') }}</a>
                             </div>
                             <div class="nav-item">
-                                <a class="nav-link" href="{{ url('login') }}" aria-label="login">{{ __('Log In') }}</a>
+                                <a class="nav-link" href="{{ url('mobile-authenticate') }}" aria-label="login">{{ __('Log In') }}</a>
                             </div>
                         @else
                             <div class="d-flex">

@@ -19,7 +19,7 @@ class SetDataServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        
+
         if (env('DB_DATABASE') && env('APP_INSTALL')) {
             if (Schema::hasTable('currency')) {
                 $this->currency();
@@ -114,7 +114,7 @@ class SetDataServiceProvider extends ServiceProvider
             $default_language->name = 'English';
             $default_language->short_name = 'en';
         }
-        
+
         View::share('default_language', $default_language);
         Session::put('language', $default_language->short_name);
         App::setLocale($default_language->short_name);
@@ -161,8 +161,8 @@ class SetDataServiceProvider extends ServiceProvider
             // General settings
             $general = $settings->where('type', 'general')->pluck('value', 'name')->toArray();
             $preference = $settings->where('type', 'preferences')->pluck('value', 'name')->toArray();
-            
-            Session::put('front_date_format_type', $preference['front_date_format_type']); 
+
+            Session::put('front_date_format_type', $preference['front_date_format_type']);
 
             //App head code/Analytics code
             $headCode = !empty($general['head_code']) ? $general['head_code'] : env('APP_HEAD_CODE', '');

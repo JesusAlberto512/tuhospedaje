@@ -43,13 +43,13 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/tuhospedaje.log'),
             'level' => 'debug',
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/tuhospedaje.log'),
             'level' => 'debug',
             'days' => 14,
         ],
@@ -84,6 +84,7 @@ return [
         'syslog' => [
             'driver' => 'syslog',
             'level' => 'debug',
+            'path' => storage_path('logs/tuhospedaje.log'),
         ],
 
         'errorlog' => [
@@ -97,7 +98,17 @@ return [
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/tuhospedaje.log'),
+        ],
+
+        'custom' => [
+            'driver' => 'single',
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => [
+                'format' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n",
+            ],
+            'path' => storage_path('logs/tuhospedaje.log'),
+            'level' => 'debug',
         ],
     ],
 

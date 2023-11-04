@@ -27,6 +27,7 @@ Route::get('cron', 'CronController@index');
 Route::get('import', 'CronController@importDump');
 Route::get('cron/ical-synchronization','CronController@iCalendarSynchronization');
 
+
 //user can view it anytime with or without logged in
 Route::group(['middleware' => ['locale']], function () {
 	Route::get('/', 'HomeController@index');
@@ -36,7 +37,13 @@ Route::group(['middleware' => ['locale']], function () {
 	Route::match(array('GET', 'POST'),'property/get-price', 'PropertyController@getPrice');
 	Route::get('set-slug/', 'PropertyController@set_slug');
 	Route::get('signup', 'LoginController@signup');
+	Route::get('registration', [\App\Http\Controllers\UserController::class, 'registration'])->name('registration');
+    Route::post('registration', [\App\Http\Controllers\UserController::class, 'create'])->name('registration.create');
+    Route::get('mobile-authenticate', [\App\Http\Controllers\LoginCodesController::class, 'create']);
 	Route::post('/checkUser/check', 'LoginController@check')->name('checkUser.check');
+    Route::post('mobile-authenticate', [\App\Http\Controllers\LoginCodesController::class, 'store'])->name('authenticate.store');
+    Route::get('validate-mobile-authenticate', 'LoginCodesController@edit')->name('validate-mobile');
+    Route::post('validate-mobile-authenticate', 'LoginCodesController@update')->name('validate-mobile.update');
 });
 
 //Auth::routes();

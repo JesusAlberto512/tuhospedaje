@@ -33,6 +33,12 @@ class UserController extends Controller
 {
     protected $helper;
 
+    public function registration()
+    {
+        $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
+        return view('home.registration', $data);
+    }
+
     public function __construct()
     {
         $this->helper = new Common;
@@ -341,7 +347,7 @@ class UserController extends Controller
     public function accountDefault(Request $request, EmailController $email_controller)
     {
         $account = Accounts::find($request->id);
-        
+
         if ($account->selected == 'Yes') {
             $this->helper->one_time_message('success', __('Payount account is set to default'));
             return redirect('users/account-preferences');

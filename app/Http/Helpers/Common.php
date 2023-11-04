@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Helpers;
 
+use Illuminate\Support\Facades\Log;
 use View, Session, DateTime, Cache;
 use App\Models\{
     Meta,
@@ -142,7 +143,7 @@ class Common {
                     for ($j=0; $j < $num_fields; $j++) {
                         $row[$j] = addslashes($row[$j]);
                         $row[$j] = preg_replace("/\n/","\\n",$row[$j]);
-                        if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } 
+                        if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; }
                         else { $return.= '""'; }
                         if ($j < ($num_fields-1)) { $return.= ','; }
                     }
@@ -546,7 +547,7 @@ class Common {
         }
     }
 
-    
+
     public static function uploadMultipleImage($request, $path = 'public/uploads/')
     {
         if ($request->hasFile('attachment')) {
@@ -556,7 +557,7 @@ class Common {
                     $destinationPath  = $path;
                     $filename         = time().'_'.$image->getClientOriginalName();
                     $image->move($destinationPath, $filename);
-                    array_push($names, $filename);          
+                    array_push($names, $filename);
 
                 }
                 return json_encode($names);
@@ -564,9 +565,80 @@ class Common {
                 self::one_time_message('error', __('Upload failed'));
                 return redirect()->back();
             }
-            
+
         }
     }
-    
+
+    public static function sendSMS($nro, $text): string
+    {
+        Log::info("sendSMS Init");
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "http://134.209.211.105/api/mensajes/envio.json",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\n\t\"apikey\":\"c5b8a6f3-6720-4b84-90c9-5e572dd6f1dd\",\n\t\"contenido\":\"$text\",\n\t\"destinatario\":\"$nro\"\n}",
+            CURLOPT_HTTPHEADER => [
+                "Content-Type: application/json"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        Log::info("sendSMS response {data}", ['data' => $response]);
+        curl_close($curl);
+        Log::info("sendSMS Finish");
+        return $response;
+    }
+
+    public static function sendWhatsApp($nro, $text): string
+    {
+        Log::info("sendWhatsApp Init");
+        $params=array(
+            'token' => 'dchm4bvf1h6gvkgl',
+            'to' => '+'.$nro,
+            'body' => 'Tu Hospedaje: Codigo Veriificacion '.$text,
+            'priority' => '1',
+            'referenceId' => '',
+            'msgId' => '',
+            'mentions' => ''
+        );
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.ultramsg.com/instance48033/messages/chat",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => http_build_query($params),
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        Log::info("sendWhatsApp Finish");
+        if ($err) {
+            echo "cURL Error #:" . $err;
+            Log::error("sendWhatsApp error".$err);
+            return "";
+        } else {
+            Log::info("sendWhatsApp response {data}", ['data' => $response]);
+            return $response;
+        }
+
+    }
+
 
 }

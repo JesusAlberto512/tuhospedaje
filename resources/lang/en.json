@@ -735,5 +735,9 @@
     "Your Old Password is Incorrect.": "Your Old Password is Incorrect.",
     "This Account has Payouts History. Sorry, can not possible to delete": "This Account has Payouts History. Sorry, can not possible to delete",
     "What was it like to host this guest?": "What was it like to host this guest?",
-    "has been": "has been"
+    "has been": "has been",
+    "login or register": "login or register",
+    "Validation Code": "Validation Code",
+    "confirm phone": "Confirm your phone number",
+    "guide sms": "Please enter the confirm code we alredy sent to: "
 }
