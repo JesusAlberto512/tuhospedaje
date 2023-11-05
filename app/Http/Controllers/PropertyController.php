@@ -299,6 +299,7 @@ class PropertyController extends Controller
                 }
 
                 if ($request->crop == "crop") {
+                    $name = explode(".", $request->img_name);
                     $image = $name[0].uniqid() . '.' . end($name);
                     $uploaded = file_put_contents($path . $image, $convertedImage);
                 } else {
