@@ -284,7 +284,10 @@ class PropertyController extends Controller
                 } else {
                     $validate = Validator::make($request->all(), [
                         'file' => 'required|file|mimes:jpg,jpeg,bmp,png,gif,JPG',
-                        'file' => 'dimensions:min_width=640,min_height=360'
+                        'file' => 'dimensions:min_width=640,min_height=360',
+                        'img_name' => 'required',
+                        'photos' => 'required',
+                        
                     ]);
                 }
 
