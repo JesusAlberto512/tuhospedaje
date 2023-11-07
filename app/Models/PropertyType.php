@@ -33,10 +33,10 @@ class PropertyType extends Model
 
     public static function getAll()
     {
-        $data = Cache::get(config('cache.prefix') . '.property.types.property');
+        //$data = Cache::get(config('cache.prefix') . '.property.types.property');
         if (empty($data)) {
             $data = parent::all();
-            Cache::forever(config('cache.prefix') . '.property.types.property', $data);
+            //Cache::forever(config('cache.prefix') . '.property.types.property', $data);
         }
         return $data;
     }
