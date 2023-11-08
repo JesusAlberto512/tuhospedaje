@@ -4505,3 +4505,34 @@ html[dir="rtl"] .test-review .mt-4 ul li i {
 html[dir="rtl"] .rtl-ml {
     padding-right: 64px !important;
 }
+
+.bar-menu-movil-bottom{
+	position: sticky;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+	-webkit-transition: all 200ms linear;
+	-moz-transition: all 200ms linear;
+	-ms-transition: all 200ms linear;
+	-o-transition: all 200ms linear;
+	transition: all 200ms linear;
+
+	overflow-x: auto;
+}
+.bar-menu-movil-bottom.scrollDown{
+	-webkit-transform: translateY(100%);
+	-moz-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+}
+.bar-menu-movil-bottom .item.active{
+	border-bottom: 4px solid #1dbf73 !important;
+}
+.bar-menu-movil-bottom .item.active *{
+	color: #1dbf73;
+}
+.bar-menu-movil-bottom .item.active svg{
+	fill: #1dbf73;
+}

@@ -756,6 +756,10 @@
     "November": "Noviembre", 
     "December": "Dicimebre",
     "Sign up with Mail": "Ingresar con mi cuenta", 
-    "login": "Iniciar sesión"
-
+    "login": "Iniciar sesión",
+    "LBL_EXPLORE": "Explora",
+    "LBL_FAVORITES": "Favoritos",
+    "LBL_TRAVELS": "Viajes",
+    "LBL_MESSAGES": "Mensajes",
+    "LBL_PROFILE": "Perfil"
 }
