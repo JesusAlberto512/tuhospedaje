@@ -23,7 +23,7 @@
 									</div>
 									<div class="col-3 mt-3">
 										<div class="input-group">
-											<select id="front-search-guests" class="form-control  text-13" style="font-size:1.3rem;">
+											<select id="front-search-guests" class="form-control  text-13" style="font-size:1.3rem;" name="bedrooms">
 											<option class="p-4 text-14" value="1">1 &#128100;</option>
 											<option class="p-4 text-14" value="2">2 &#128100;</option>
 											<option class="p-4 text-14" value="3">3 &#128100;</option>
