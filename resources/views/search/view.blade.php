@@ -443,7 +443,7 @@
         var removed = "{{ __('Removed from favourite list.') }}";
 
     </script>
-    <script type="text/javascript" src="{{ asset('public/js/map-search.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/map-search.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
 
 @endsection

@@ -111,7 +111,7 @@
         return val;
     }
 
-       
+
     function getProperties(map,url){
 
         if (loadPage) {
@@ -129,6 +129,11 @@
 
         map_loc = t;
         var range       = $('#price-range').attr('data-value');
+        if(range == undefined){
+            range       = "0,10000";
+        }else {
+            range       = range.replace(/[\[\]]/g, '');
+        }
         range           = range.split(',');
         var map_details = a + "~" + t + "~" + o + "~" + i + "~" + s + "~" + r + "~" + l + "~" + n;
         var location    = $('#front-search-field').val();
@@ -438,7 +443,7 @@
         getProperties($('#map_view').locationpicker('map').map);
     });
     $('#map_view').locationpicker({
-        
+
         location: {
             latitude: latitude,
             longitude: longitude

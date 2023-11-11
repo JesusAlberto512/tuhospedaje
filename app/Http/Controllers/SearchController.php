@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Session, Common;
 use Illuminate\Http\Request;
 use App\Models\{Properties,
@@ -25,38 +26,38 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $location = $request->input('location');
         $address = urlencode($location);
         $google_map_key = config("vrent.google_map_key");
-        
+
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_map_key";
-        
+
         $geocodeResponse = file_get_contents($url); // Suponiendo que content_read() hace algo similar a esto
-        
+
         $json = json_decode($geocodeResponse, true);
 
 
-        
-        
+
+
         // Verificar si se obtuvieron resultados.
         if (isset($json['results']) && count($json['results']) > 0) {
             $data['lat'] = $json['results'][0]['geometry']['location']['lat'] ?? 0;
             $data['long'] = $json['results'][0]['geometry']['location']['lng'] ?? 0;
-            
+
         } else {
             $data['lat'] = 0;
             $data['long'] = 0;
-            
+
         }
         $data['location'] = $request->input('location');
-        
+
         $data['checkin'] = $request->input('checkin');
-        
+
         $data['checkout'] = $request->input('checkout');
-        
+
         $data['guest'] = $request->input('guest');
-        
+
         $data['bedrooms'] = $request->input('bedrooms');
         $data['beds'] = $request->input('beds');
         $data['bathrooms'] = $request->input('bathrooms');
@@ -79,12 +80,12 @@ class SearchController extends Controller
         $maxPrice = Settings::getAll()->where('name', 'max_search_price')->first()->value;
         $data['default_min_price'] = $this->helper->convert_currency(Currency::getAll()->firstWhere('default')->code, '', $minPrice);
         $data['default_max_price'] = $this->helper->convert_currency(Currency::getAll()->firstWhere('default')->code, '', $maxPrice);
-        
+
         if (!$data['min_price']) {
             $data['min_price'] = $data['default_min_price'];
             $data['max_price'] = $data['default_max_price'];
         }
-        
+
         $data['date_format'] = Settings::getAll()->firstWhere('name', 'date_format_type')->value;
         return view('search.view', $data);
 
@@ -107,8 +108,6 @@ class SearchController extends Controller
         $map_details = $request->input('map_details');
         $min_price = $request->input('min_price');
         $max_price = $request->input('max_price');
-
-
 
         if (!is_array($property_type)) {
             if ($property_type != '') {
@@ -145,7 +144,7 @@ class SearchController extends Controller
         $properties_whereIn = [];
         $space_type_val = [];
 
-        
+
         $location = $request->input('location');
         $address = urlencode($location);
         $google_map_key = config("vrent.google_map_key");
@@ -154,7 +153,7 @@ class SearchController extends Controller
         $geocodeResponse = file_get_contents($url); // Suponiendo que content_read() hace algo similar a esto
 
         $json = json_decode($geocodeResponse, true);
-        
+
         if (isset($json['results']) && count($json['results']) > 0) {
             $data['lat'] = $json['results'][0]['geometry']['location']['lat'] ?? 0;
             $data['long'] = $json['results'][0]['geometry']['location']['lng'] ?? 0;
@@ -172,10 +171,10 @@ class SearchController extends Controller
             $minLong = -1100;
             $maxLong = 1100;
         }
-    
+
 
         $users_where['users.status'] = 'Active';
-        
+
 
         $checkin = date('Y-m-d', strtotime($checkin));
         $checkout = date('Y-m-d', strtotime($checkout));
@@ -184,10 +183,10 @@ class SearchController extends Controller
         unset($days[count($days) - 1]);
 
         $calendar_where['date'] = $days;
-       
+
         $not_available_property_ids = PropertyDates::whereIn('date', $days)->where('status', 'Not available')->distinct()->pluck('property_id');
 
-        
+
         $properties_where['properties.accommodates'] = $guest;
 
         $properties_where['properties.status'] = 'Listed';
@@ -225,22 +224,84 @@ class SearchController extends Controller
         $currency_rate = Currency::getAll()
             ->firstWhere('code', \Session::get('currency'))
             ->rate;
-        $properties = Properties::with([
-            'property_address',
-            'property_price',
-            'users'
-        ])
-            ->whereHas('property_address', function ($query) use ($minLat, $maxLat, $minLong, $maxLong) {
-                $query->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
-            })
-            //->whereHas('property_price', function ($query) use ($min_price, $max_price, $currency_rate) {
-            //    $query->join('currency', 'currency.code', '=', 'property_price.currency_code');
-            //    $query->whereRaw('((price / currency.rate) * ' . $currency_rate . ') >= ' . $min_price . ' and ((price / currency.rate) * ' . $currency_rate . ') <= ' . $max_price);
-            //})
-            ->whereHas('users', function ($query) use ($users_where) {
-                $query->where($users_where);
-            })
-            ->whereNotIn('id', $not_available_property_ids);
+
+        if(($minLat != null || $maxLat != null || $minLong != null || $maxLong != null) && $min_price != null && $users_where != null){
+            Log::info("if all");
+            $properties = Properties::with([
+                'property_address',
+                'property_price',
+                'users'
+            ])
+                ->whereHas('property_address', function ($query) use ($minLat, $maxLat, $minLong, $maxLong) {
+                    $query->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
+                })
+                ->whereHas('property_price', function ($query) use ($min_price, $max_price, $currency_rate) {
+                    $query->join('currency', 'currency.code', '=', 'property_price.currency_code');
+                    $query->whereRaw('((price / currency.rate) * ' . $currency_rate . ') >= ' . $min_price . ' and ((price / currency.rate) * ' . $currency_rate . ') <= ' . $max_price);
+                })
+                ->whereHas('users', function ($query) use ($users_where) {
+                    $query->where($users_where);
+                })
+                ->whereNotIn('id', $not_available_property_ids);
+        }else if (($minLat != null || $maxLat != null || $minLong != null || $maxLong != null) && $min_price == null && $users_where == null){
+            Log::info("if location");
+            $properties = Properties::with([
+                'property_address',
+                'property_price',
+                'users'
+            ])
+                ->whereHas('property_address', function ($query) use ($minLat, $maxLat, $minLong, $maxLong) {
+                    $query->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
+                })
+                ->whereNotIn('id', $not_available_property_ids);
+        }else if(($minLat == null || $maxLat == null || $minLong == null || $maxLong == null) && $min_price != null && $users_where != null){
+            Log::info("if price user");
+            $properties = Properties::with([
+                'property_address',
+                'property_price',
+                'users'
+            ])
+                ->whereHas('property_price', function ($query) use ($min_price, $max_price, $currency_rate) {
+                    $query->join('currency', 'currency.code', '=', 'property_price.currency_code');
+                    $query->whereRaw('((price / currency.rate) * ' . $currency_rate . ') >= ' . $min_price . ' and ((price / currency.rate) * ' . $currency_rate . ') <= ' . $max_price);
+                })
+                ->whereHas('users', function ($query) use ($users_where) {
+                    $query->where($users_where);
+                })
+                ->whereNotIn('id', $not_available_property_ids);
+        }else if(($minLat == null || $maxLat == null || $minLong == null || $maxLong == null) && $min_price == null && $users_where != null){
+            Log::info("if user");
+            $properties = Properties::with([
+                'property_address',
+                'property_price',
+                'users'
+            ])
+                ->whereHas('users', function ($query) use ($users_where) {
+                    $query->where($users_where);
+                })
+                ->whereNotIn('id', $not_available_property_ids);
+        } else if(($minLat == null || $maxLat == null || $minLong == null || $maxLong == null) && $min_price != null && $users_where == null) {
+            Log::info("if price");
+            $properties = Properties::with([
+                'property_address',
+                'property_price',
+                'users'
+            ])
+                ->whereHas('property_price', function ($query) use ($min_price, $max_price, $currency_rate) {
+                    $query->join('currency', 'currency.code', '=', 'property_price.currency_code');
+                    $query->whereRaw('((price / currency.rate) * ' . $currency_rate . ') >= ' . $min_price . ' and ((price / currency.rate) * ' . $currency_rate . ') <= ' . $max_price);
+                })
+                ->whereNotIn('id', $not_available_property_ids);
+
+        }else{
+            Log::info("if none");
+            $properties = Properties::with([
+                'property_address',
+                'property_price',
+                'users'
+            ])
+                ->whereNotIn('id', $not_available_property_ids);
+        }
 
         if ($properties_where) {
             foreach ($properties_where as $row => $value) {
