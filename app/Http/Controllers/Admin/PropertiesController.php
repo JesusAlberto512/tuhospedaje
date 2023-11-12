@@ -376,7 +376,7 @@ class PropertiesController extends Controller
                     $property_steps->save();
                 }
 
-                return redirect('admin/listing/'.$property_id.'/photos')->with('success', 'File Uploaded Successfully!');
+                return redirect('admin/listing/'.$property_id.'/photos')->with('success', '!Archivo cargado satifactoriamente!');
 
             }
 

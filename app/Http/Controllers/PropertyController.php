@@ -340,7 +340,7 @@ class PropertyController extends Controller
                     $property_steps->save();
                 }
 
-                return redirect('listing/' . $property_id . '/photos')->with('success', 'File Uploaded Successfully!');
+                return redirect('listing/' . $property_id . '/photos')->with('success', '¡Archivo cargado satifactoriamente!');
 
             }
 
