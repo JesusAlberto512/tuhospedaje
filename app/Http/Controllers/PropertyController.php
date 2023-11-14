@@ -284,7 +284,10 @@ class PropertyController extends Controller
                 } else {
                     $validate = Validator::make($request->all(), [
                         'file' => 'required|file|mimes:jpg,jpeg,bmp,png,gif,JPG',
-                        'file' => 'dimensions:min_width=640,min_height=360'
+                        'file' => 'dimensions:min_width=640,min_height=360',
+                        'img_name' => 'required',
+                        'photos' => 'required',
+                        
                     ]);
                 }
 
@@ -299,6 +302,7 @@ class PropertyController extends Controller
                 }
 
                 if ($request->crop == "crop") {
+                    $name = explode(".", $request->img_name);
                     $image = $name[0].uniqid() . '.' . end($name);
                     $uploaded = file_put_contents($path . $image, $convertedImage);
                 } else {

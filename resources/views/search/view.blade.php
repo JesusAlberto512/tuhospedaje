@@ -405,7 +405,7 @@
 @endsection
 
 @section('validation_script')
-    <script type="text/javascript" src='https://maps.google.com/maps/api/js?key={{ config("Tuhospedaje.google_map_key") }}&libraries=places'></script>
+    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places'></script>
 	<script type="text/javascript" src="{{ asset('public/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/moment.min.js') }}"></script>
@@ -441,10 +441,10 @@
         var remove = "{{ __('Remove from Favourite List ?') }}";
         var added = "{{ __('Added to favourite list.') }}";
         var removed = "{{ __('Removed from favourite list.') }}";
-       
+
     </script>
-    <script type="text/javascript" src="{{ asset('public/js/map-search.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/map-search.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
-    
+
 @endsection
-   
+

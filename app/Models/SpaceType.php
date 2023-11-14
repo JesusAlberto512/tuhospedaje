@@ -28,10 +28,10 @@ class SpaceType extends Model
 
     public static function getAll()
     {
-        $data = Cache::get(config('cache.prefix') . '.property.types.space');
+        //$data = Cache::get(config('cache.prefix') . '.property.types.space');
         if (empty($data)) {
             $data = parent::all();
-            Cache::forever(config('cache.prefix') . '.property.types.space', $data);
+            //Cache::forever(config('cache.prefix') . '.property.types.space', $data);
         }
         return $data;
     }

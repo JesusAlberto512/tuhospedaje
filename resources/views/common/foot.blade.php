@@ -17,6 +17,9 @@
 		<script src="{{ asset('public/js/front-foot.min.js') }}"></script>
 
 		<!-- Needed Js from Old Version End -->
+		<!-- Customs Js Start-->
+		<script src="{{ asset('public/js/custom.js') }}"></script>
+		<!-- Customs Js End -->
 		@stack('scripts')
 	</body>
 </html>

@@ -32,7 +32,7 @@ Route::get('cron/ical-synchronization','CronController@iCalendarSynchronization'
 Route::group(['middleware' => ['locale']], function () {
 	Route::get('/', 'HomeController@index');
 	Route::post('search/result', 'SearchController@searchResult');
-	Route::match(array('GET', 'POST'),'search', 'SearchController@index');
+	Route::match(array('GET', 'POST'),'search', 'SearchController@index')->name("search");
 	Route::match(array('GET', 'POST'),'properties/{slug}', 'PropertyController@single')->name('property.single');
 	Route::match(array('GET', 'POST'),'property/get-price', 'PropertyController@getPrice');
 	Route::get('set-slug/', 'PropertyController@set_slug');
@@ -324,7 +324,7 @@ Route::get('facebookAuthenticate', 'LoginController@facebookAuthenticate');
 //only can view if user is logged in
 Route::group(['middleware' => ['guest:users', 'locale']], function () {
     Route::get('dashboard', 'UserController@dashboard');
-    Route::match(array('GET', 'POST'),'users/profile', 'UserController@profile');
+    Route::match(array('GET', 'POST'),'users/profile', 'UserController@profile')->name("userProfile");
     Route::match(array('GET', 'POST'),'users/profile/media', 'UserController@media');
 
     // User verification
@@ -360,7 +360,7 @@ Route::group(['middleware' => ['guest:users', 'locale']], function () {
     Route::match(array('GET', 'POST'),'listing/{id}/{step}', 'PropertyController@listing')->where(['id' => '[0-9]+','page' => 'basics|description|location|amenities|photos|pricing|calendar|details|booking']);
 
     // Favourites routes
-    Route::get('user/favourite', 'PropertyController@userBookmark');
+    Route::get('user/favourite', 'PropertyController@userBookmark')->name("favorite");
     Route::post('add-edit-book-mark', 'PropertyController@addEditBookMark');
 
     Route::post('ajax-calender/{id}', 'CalendarController@calenderJson');
@@ -386,12 +386,12 @@ Route::group(['middleware' => ['guest:users', 'locale']], function () {
     Route::get('booking/expire/{id}', 'BookingController@expire');
     Route::match(['get', 'post'], 'my-bookings', 'BookingController@myBookings');
     Route::post('booking/host_cancel', 'BookingController@hostCancel');
-    Route::match(['get', 'post'], 'trips/active', 'TripsController@myTrips');
+    Route::match(['get', 'post'], 'trips/active', 'TripsController@myTrips')->name("tripsActive");
     Route::get('booking/receipt', 'TripsController@receipt');
     Route::post('trips/guest_cancel', 'TripsController@guestCancel');
 
     // Messaging
-    Route::match(['get', 'post'], 'inbox', 'InboxController@index');
+    Route::match(['get', 'post'], 'inbox', 'InboxController@index')->name("inbox");
     Route::post('messaging/booking/', 'InboxController@message');
     Route::post('messaging/reply/', 'InboxController@messageReply');
 
