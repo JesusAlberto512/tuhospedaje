@@ -11,6 +11,7 @@ use App\Http\{
 use Illuminate\Support\Facades\Cache;
 use App\DataTables\TransactionDataTable;
 use Auth, Validator, Socialite, DateTime, Hash, DB, Session, Common;
+use Illuminate\Support\Facades\Log;
 use App\Models\{
     User,
     UserDetails,
@@ -35,8 +36,27 @@ class UserController extends Controller
 
     public function registration()
     {
+        
         $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
-        return view('home.registration', $data);
+        if (Auth::check()) {
+            
+            $user_id = Auth::user()->id;
+            $user_status = Auth::user()->status;
+            
+            if ($user_status == 'Active' && $user_status != 0) {
+                return redirect()->intended('dashboard');
+    
+    
+            }
+            else{
+                return view('home.registration', $data);
+            }
+            
+        }else {
+            return view('home.registration', $data);
+            
+        }
+       
     }
 
     public function __construct()
