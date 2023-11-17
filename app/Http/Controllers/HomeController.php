@@ -37,7 +37,6 @@ class HomeController extends Controller
     public function index()
     {
         $data['starting_cities']     = StartingCities::getAll();
-        $data['properties']          = Properties::recommendedHome();
         $data['testimonials']        = Testimonials::getAll();
         $sessionLanguage             = Session::get('language');
         $language                    = Settings::getAll()->where('name', 'default_language')->where('type', 'general')->first();
@@ -61,8 +60,8 @@ class HomeController extends Controller
             Session::put($prefer);
         }
         $data['date_format'] = Settings::getAll()->firstWhere('name', 'date_format_type')->value;
-        $valorDePropertiesGeneral= $this->propertiesGeneral();
-        $resultado = "El valor obtenido de propertiesGeneral es: " . $valorDePropertiesGeneral;
+        $valorDePropertiesGeneral=$this->propertiesGeneral();
+        $data['properties'] =$valorDePropertiesGeneral;
         return view('home.home', $data);
     }
     
@@ -136,7 +135,7 @@ class HomeController extends Controller
         return redirect('/');
 
     }
-    public function propertiesGeneral()
+    public function propertiesGeneral_Old()
     {
         $full_address = "";
         $checkin = "";
@@ -259,8 +258,25 @@ class HomeController extends Controller
                                         });
             }
         }
-        $properties = $properties->paginate(Session::get('row_per_page'))->toJson();
+        //$properties = $properties->paginate(Session::get('row_per_page'))->toJson();
         return $properties;
     }
+    public function propertiesGeneral(){
+        $min_price = 0;
+        $max_price = 10000000000;
+        
+        $query = Properties::query();
+        $currency_rate = Currency::getAll()
+        ->firstWhere('code', \Session::get('currency'))
+        ->rate;
+
+        $query->whereHas('property_price', function ($query) use ($min_price, $max_price, $currency_rate) {
+            $query->join('currency', 'currency.code', '=', 'property_price.currency_code');
+            $query->whereRaw("((price / currency.rate) * {$currency_rate}) >= {$min_price} and ((price / currency.rate) * {$currency_rate}) <= {$max_price}");
+        });
+        $properties = $query->get();
+        return $properties; 
+    }
+    
 
 }
