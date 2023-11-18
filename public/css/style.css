@@ -70,7 +70,7 @@ a:hover {
 	background-image: url(../img/hero-img.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
-	min-height: 70rem;
+	/*min-height: 70rem;*/
 	width: 100%;
 	background-position: 33% 22%;
 	background-size: cover;
@@ -1965,11 +1965,11 @@ figure.effect-ming:hover img {
 /************************ Form HTML ********************/
 .main_formbg {
 	background: rgb(201 201 201 / 50%);
-	border-radius: 50px;
+	border-radius: 15px;
 	width: 100%;
-	padding: 2rem;
-	margin-top: 6rem;
-	box-shadow: 0rem 0.5rem 2rem rgba(0, 0, 0, 0.16);
+	padding: 1rem;
+	margin-top: 2rem;
+	/*box-shadow: 0rem 0.25rem 1rem rgba(0, 0, 0, 0.16);*/
 }
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
 	.main_formbg {

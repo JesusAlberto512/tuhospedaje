@@ -8,20 +8,20 @@
 @section('main')
 	<input type="hidden" id="front_date_format_type" value="{{ Session::get('front_date_format_type') }}">
 	<section class="hero-banner magic-ball">
-		<div class="main-banner"  style="background-image: url('{{ getBanner() }}');">
+		<div class="main-banner">
 			<div class="container">
 				<div class="row align-items-center text-center text-md-left">
-					<div class="col-md-6 col-lg-5 mb-5 mb-md-0">
-						<div class="main_formbg item animated zoomIn mt-80">
+					<div class="col">					<!--div class="col-md-6 col-lg-5 mb-5 mb-md-0"-->
+						<div class="main_formbg item mt-80">
 							<form id="front-search-form" method="post" action="{{ url('search') }}">
 								{{ csrf_field() }}
 								<div class="row">
-									<div class="col-9 mt-3">
+									<div class="col-4 mt-3">
 										<div class="input-group ">
 											<input class="form-control p-3 text-14" id="front-search-field" placeholder="{{ __('Where do you want to go?') }}" autocomplete="off" name="location" type="text" required>
 										</div>
 									</div>
-									<div class="col-3 mt-3">
+									<div class="col-2 mt-3">
 										<div class="input-group">
 											<select id="front-search-guests" class="form-control  text-13" style="font-size:1.3rem;" name="bedrooms">
 											<option class="p-4 text-14" value="1">1 &#128100;</option>
@@ -36,7 +36,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-12 mt-5">
+									<div class="col-md-4 mt-3">
 										<div class="d-flex" id="daterange-btn">
 											<div class="input-group mr-2 " >
 												<input class="form-control p-3 border-right-0 border text-14 checkinout" name="checkin" id="startDate" type="text" placeholder="{{ __('Check In') }}" autocomplete="off" readonly="readonly" required>
@@ -60,7 +60,7 @@
 
 
 
-									<div class="col-md-12 front-search mt-5 pb-3 ">
+									<div class="col-md-2 front-search mt-3 pb-3 ">
 										<button type="submit" class="btn vbtn-default btn-block p-3 text-16">{{ __('Search') }}</button>
 									</div>
 								</div>
@@ -77,12 +77,12 @@
 	@if (!$properties->isEmpty())
 		<section class="recommandedbg bg-gray mt-4 magic-ball magic-ball-about pb-5">
 			<div class="container-fluid container-fluid-90">
-				<div class="row">
+				<!--div class="row">
 					<div class="recommandedhead section-intro text-center mt-70">
 						<p class="item animated fadeIn text-24 font-weight-700 m-0">{{ __('Recommended Home') }}</p>
 						<p class="mt-2">{{ __('Alluring home where you can stay and enjoy a comfortable life.') }}</p>
 					</div>
-				</div>
+				</div-->
 
 				<div class="row mt-5">
 					@foreach ($properties as $property)
@@ -90,7 +90,7 @@
 						<div class="card h-100 card-shadow card-1">
 							<div class="grid">
 								<a href="properties/{{ $property->slug }}" aria-label="{{ $property->name }}">
-									<figure class="effect-milo">
+									<figure">
 										<img src="{{ $property->cover_photo }}" class="room-image-container200" alt="{{ $property->name }}"/>
 										<figcaption>
 										</figcaption>
@@ -100,13 +100,7 @@
 
 							<div class="card-body p-0 pl-1 pr-1">
 								<div class="d-flex">
-									<div>
-										<div class="profile-img pl-2">
-											<a href="{{ url('users/show/' . $property->host_id) }}"><img src="{{ $property->users->profile_src }}" alt="{{ $property->name }}" class="img-fluid"></a>
-										</div>
-									</div>
-
-									<div class="p-2 text">
+									<div class="p-1 text">
 										<a class="text-color text-color-hover" href="properties/{{ $property->slug }}">
 											<p class="text-16 font-weight-700 text"> {{ $property->name }}</p>
 										</a>
@@ -114,7 +108,7 @@
 									</div>
 								</div>
 
-								<div class="review-0 p-3">
+								<div class="review-0 p-2">
 									<div class="d-flex justify-content-between">
 
 										<div class="d-flex">
