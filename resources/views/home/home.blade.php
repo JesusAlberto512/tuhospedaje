@@ -72,35 +72,7 @@
 		</div>
 	</section>
 
-	@if (!$starting_cities->isEmpty())
-	<section class="bg-gray mt-70 pb-2">
-		<div class="container-fluid container-fluid-90">
-			<div class="row">
-				<div class="section-intro text-center">
-					<p class="item animated fadeIn text-24 font-weight-700 m-0 text-capitalize">{{ __('Top Destination') }}</p>
-					<p class="mt-3">{{ __('Best places where to live in the world and enjoy your trip') }} </p>
-				</div>
-			</div>
-
-			<div class="row mt-2">
-				@foreach ($starting_cities as $city)
-				<div class="col-md-4 mt-5">
-				<a href="{{ url('search?location=' . $city->name . '&checkin=&checkout=&guest=1') }}">
-						<div class="grid item animated zoomIn">
-							<figure class="effect-ming">
-								<img src="{{ $city->image_url }}" alt="city"/>
-									<figcaption>
-										<p class="text-18 font-weight-700 position-center">{{ $city->name }}</p>
-									</figcaption>
-							</figure>
-						</div>
-					</a>
-				</div>
-				@endforeach
-			</div>
-		</div>
-	</section>
-	@endif
+	
 
 	@if (!$properties->isEmpty())
 		<section class="recommandedbg bg-gray mt-4 magic-ball magic-ball-about pb-5">
@@ -210,43 +182,7 @@
 		</section>
 	@endif
 
-	@if (!$testimonials->isEmpty())
-	<section class="testimonialbg pb-70">
-		<div class="testimonials">
-			<div class="container">
-				<div class="row">
-					<div class="recommandedhead section-intro text-center mt-70">
-						<p class="animated fadeIn text-24 text-color font-weight-700 m-0">{{ __('Say about Us') }}</p>
-						<p class="mt-2">{{ __('People Say The Nicest Things') }}</p>
-					</div>
-				</div>
-
-				<div class="row mt-5">
-					@foreach ($testimonials as $testimonial)
-					<?php $i = 0; ?>
-						<div class="col-md-4 mt-4">
-							<div class="item h-100 card-1">
-								<img src="{{ $testimonial->image_url }}" alt="{{ $testimonial->name }}">
-								<div class="name">{{ $testimonial->name }}</div>
-									<small class="desig">{{ $testimonial->designation }}</small>
-									<p class="details">{{ substr($testimonial->description, 0, 200) }} </p>
-									<ul>
-										@for ($i = 0; $i < 5; $i++)
-											@if ($testimonial->review >$i)
-												<li><i class="fa fa-star secondary-text-color" aria-hidden="true"></i></li>
-											@else
-												<li><i class="fa fa-star rating" aria-hidden="true"></i></li>
-											@endif
-										@endfor
-									</ul>
-							</div>
-						</div>
-					@endforeach
-				</div>
-			</div>
-		</div>
-	</section>
-	@endif
+	
 @stop
 
 @section('validation_script')
