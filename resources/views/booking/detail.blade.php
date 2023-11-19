@@ -391,7 +391,7 @@
 </script>
 <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('public/js/user-booking-detail.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/js/front.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
 
 @endsection
 

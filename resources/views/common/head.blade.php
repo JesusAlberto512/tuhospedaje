@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Metas For sharing property in social media -->
@@ -28,6 +29,6 @@
 		<link rel="stylesheet" href="{{ asset('public/css/vendors/fontawesome/css/all.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
 		<!--CSS new version end-->
-		
+
 	</head>
 <body>

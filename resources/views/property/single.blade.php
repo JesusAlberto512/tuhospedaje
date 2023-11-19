@@ -1865,7 +1865,7 @@
 @endsection
 
 @section('validation_script')
-    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places'></script>
+    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places&region=VE&language=es-419&callback=Function.prototype'></script>
     @auth
     <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
     @endauth
@@ -1901,7 +1901,7 @@
     </script>
 
     <script type="text/javascript" src="{{ asset('public/js/single-property.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/front.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
 
 @endsection
 

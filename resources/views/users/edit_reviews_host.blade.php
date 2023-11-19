@@ -136,7 +136,7 @@
     'use strict'
     let submit = "{{ __('Submit') }}..";
 </script>
-<script type="text/javascript" src="{{ asset('public/js/front.min.js') }}"></script>
-    
+<script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
+
 @endsection
 

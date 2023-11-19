@@ -282,6 +282,6 @@
     </script>
     <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/backend/dist/js/validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('public/js/front.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/jquery-ui.js') }}"></script>
 @endsection

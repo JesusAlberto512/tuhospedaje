@@ -142,5 +142,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public/js/front.min.js') }}"></script>
+    <script src="{{ asset('public/js/front.js') }}"></script>
 @endpush
