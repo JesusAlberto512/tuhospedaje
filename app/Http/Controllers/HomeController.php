@@ -269,7 +269,8 @@ class HomeController extends Controller
         $currency_rate = Currency::getAll()
         ->firstWhere('code', \Session::get('currency'))
         ->rate;
-
+        $query->where('status', 'Listed');
+        
         $query->whereHas('property_price', function ($query) use ($min_price, $max_price, $currency_rate) {
             $query->join('currency', 'currency.code', '=', 'property_price.currency_code');
             $query->whereRaw("((price / currency.rate) * {$currency_rate}) >= {$min_price} and ((price / currency.rate) * {$currency_rate}) <= {$max_price}");
