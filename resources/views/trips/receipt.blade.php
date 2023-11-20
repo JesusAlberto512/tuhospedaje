@@ -155,5 +155,5 @@
 
 @endsection
 @section('validation_script')
-    <script src="{{ asset('public/js/front.min.js') }}"></script> 
+    <script src="{{ asset('public/js/front.js') }}"></script>
 @endsection

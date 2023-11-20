@@ -8,20 +8,20 @@
 @section('main')
 	<input type="hidden" id="front_date_format_type" value="{{ Session::get('front_date_format_type') }}">
 	<section class="hero-banner magic-ball">
-		<div class="main-banner"  style="background-image: url('{{ getBanner() }}');">
+		<div class="main-banner">
 			<div class="container">
 				<div class="row align-items-center text-center text-md-left">
-					<div class="col-md-6 col-lg-5 mb-5 mb-md-0">
-						<div class="main_formbg item animated zoomIn mt-80">
+					<div class="col">					<!--div class="col-md-6 col-lg-5 mb-5 mb-md-0"-->
+						<div class="main_formbg item mt-80">
 							<form id="front-search-form" method="post" action="{{ url('search') }}">
 								{{ csrf_field() }}
 								<div class="row">
-									<div class="col-9 mt-3">
+									<div class="col-4 mt-3">
 										<div class="input-group ">
 											<input class="form-control p-3 text-14" id="front-search-field" placeholder="{{ __('Where do you want to go?') }}" autocomplete="off" name="location" type="text" required>
 										</div>
 									</div>
-									<div class="col-3 mt-3">
+									<div class="col-2 mt-3">
 										<div class="input-group">
 											<select id="front-search-guests" class="form-control  text-13" style="font-size:1.3rem;" name="bedrooms">
 											<option class="p-4 text-14" value="1">1 &#128100;</option>
@@ -36,7 +36,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-12 mt-5">
+									<div class="col-md-4 mt-3">
 										<div class="d-flex" id="daterange-btn">
 											<div class="input-group mr-2 " >
 												<input class="form-control p-3 border-right-0 border text-14 checkinout" name="checkin" id="startDate" type="text" placeholder="{{ __('Check In') }}" autocomplete="off" readonly="readonly" required>
@@ -60,7 +60,7 @@
 
 
 
-									<div class="col-md-12 front-search mt-5 pb-3 ">
+									<div class="col-md-2 front-search mt-3 pb-3 ">
 										<button type="submit" class="btn vbtn-default btn-block p-3 text-16">{{ __('Search') }}</button>
 									</div>
 								</div>
@@ -72,45 +72,17 @@
 		</div>
 	</section>
 
-	@if (!$starting_cities->isEmpty())
-	<section class="bg-gray mt-70 pb-2">
-		<div class="container-fluid container-fluid-90">
-			<div class="row">
-				<div class="section-intro text-center">
-					<p class="item animated fadeIn text-24 font-weight-700 m-0 text-capitalize">{{ __('Top Destination') }}</p>
-					<p class="mt-3">{{ __('Best places where to live in the world and enjoy your trip') }} </p>
-				</div>
-			</div>
 
-			<div class="row mt-2">
-				@foreach ($starting_cities as $city)
-				<div class="col-md-4 mt-5">
-				<a href="{{ url('search?location=' . $city->name . '&checkin=&checkout=&guest=1') }}">
-						<div class="grid item animated zoomIn">
-							<figure class="effect-ming">
-								<img src="{{ $city->image_url }}" alt="city"/>
-									<figcaption>
-										<p class="text-18 font-weight-700 position-center">{{ $city->name }}</p>
-									</figcaption>
-							</figure>
-						</div>
-					</a>
-				</div>
-				@endforeach
-			</div>
-		</div>
-	</section>
-	@endif
 
 	@if (!$properties->isEmpty())
 		<section class="recommandedbg bg-gray mt-4 magic-ball magic-ball-about pb-5">
 			<div class="container-fluid container-fluid-90">
-				<div class="row">
+				<!--div class="row">
 					<div class="recommandedhead section-intro text-center mt-70">
 						<p class="item animated fadeIn text-24 font-weight-700 m-0">{{ __('Recommended Home') }}</p>
 						<p class="mt-2">{{ __('Alluring home where you can stay and enjoy a comfortable life.') }}</p>
 					</div>
-				</div>
+				</div-->
 
 				<div class="row mt-5">
 					@foreach ($properties as $property)
@@ -118,7 +90,7 @@
 						<div class="card h-100 card-shadow card-1">
 							<div class="grid">
 								<a href="properties/{{ $property->slug }}" aria-label="{{ $property->name }}">
-									<figure class="effect-milo">
+									<figure">
 										<img src="{{ $property->cover_photo }}" class="room-image-container200" alt="{{ $property->name }}"/>
 										<figcaption>
 										</figcaption>
@@ -128,13 +100,7 @@
 
 							<div class="card-body p-0 pl-1 pr-1">
 								<div class="d-flex">
-									<div>
-										<div class="profile-img pl-2">
-											<a href="{{ url('users/show/' . $property->host_id) }}"><img src="{{ $property->users->profile_src }}" alt="{{ $property->name }}" class="img-fluid"></a>
-										</div>
-									</div>
-
-									<div class="p-2 text">
+									<div class="p-1 text">
 										<a class="text-color text-color-hover" href="properties/{{ $property->slug }}">
 											<p class="text-16 font-weight-700 text"> {{ $property->name }}</p>
 										</a>
@@ -142,7 +108,7 @@
 									</div>
 								</div>
 
-								<div class="review-0 p-3">
+								<div class="review-0 p-2">
 									<div class="d-flex justify-content-between">
 
 										<div class="d-flex">
@@ -210,47 +176,11 @@
 		</section>
 	@endif
 
-	@if (!$testimonials->isEmpty())
-	<section class="testimonialbg pb-70">
-		<div class="testimonials">
-			<div class="container">
-				<div class="row">
-					<div class="recommandedhead section-intro text-center mt-70">
-						<p class="animated fadeIn text-24 text-color font-weight-700 m-0">{{ __('Say about Us') }}</p>
-						<p class="mt-2">{{ __('People Say The Nicest Things') }}</p>
-					</div>
-				</div>
 
-				<div class="row mt-5">
-					@foreach ($testimonials as $testimonial)
-					<?php $i = 0; ?>
-						<div class="col-md-4 mt-4">
-							<div class="item h-100 card-1">
-								<img src="{{ $testimonial->image_url }}" alt="{{ $testimonial->name }}">
-								<div class="name">{{ $testimonial->name }}</div>
-									<small class="desig">{{ $testimonial->designation }}</small>
-									<p class="details">{{ substr($testimonial->description, 0, 200) }} </p>
-									<ul>
-										@for ($i = 0; $i < 5; $i++)
-											@if ($testimonial->review >$i)
-												<li><i class="fa fa-star secondary-text-color" aria-hidden="true"></i></li>
-											@else
-												<li><i class="fa fa-star rating" aria-hidden="true"></i></li>
-											@endif
-										@endfor
-									</ul>
-							</div>
-						</div>
-					@endforeach
-				</div>
-			</div>
-		</div>
-	</section>
-	@endif
 @stop
 
 @section('validation_script')
-	<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places'></script>
+	<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places&region=VE&language=es-419&callback=Function.prototype'></script>
 	<script type="text/javascript" src="{{ asset('public/js/moment.min.js') }}"></script>
 	<script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('public/js/daterangepicker.min.js') }}"></script>
@@ -268,7 +198,7 @@
         var removed = "{{ __('Removed from favourite list.') }}";
         var dateFormat = '{{ $date_format }}';
     </script>
-    <script src="{{ asset('public/js/front.min.js') }}"></script>
+    <script src="{{ asset('public/js/front.js') }}"></script>
 
 @endsection
 

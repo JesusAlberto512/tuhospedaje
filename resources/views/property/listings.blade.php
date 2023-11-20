@@ -187,7 +187,7 @@
     var token = "{{ csrf_token() }}";
     var hasBeen = "{{ __('has been') }}";
 </script>
-<script src="{{ asset('public/js/front.min.js') }}"></script>
+<script src="{{ asset('public/js/front.js') }}"></script>
 @endsection
 
 

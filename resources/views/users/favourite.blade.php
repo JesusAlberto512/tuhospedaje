@@ -85,6 +85,6 @@
         let added = "{{ __('Added to favourite list.') }}";
         let removed = "{{ __('Removed from favourite list.') }}";
     </script>
-    <script src="{{ asset('public/js/front.min.js') }}"></script>
-    
+    <script src="{{ asset('public/js/front.js') }}"></script>
+
 @endsection

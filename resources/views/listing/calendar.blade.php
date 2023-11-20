@@ -276,7 +276,7 @@
 
 </script>
 
-<script src="{{ asset('public/js/front.min.js') }}"></script>
+<script src="{{ asset('public/js/front.js') }}"></script>
 <script type="text/javascript" src="{{ asset('public/js/listings.min.js') }}"></script>
 
 

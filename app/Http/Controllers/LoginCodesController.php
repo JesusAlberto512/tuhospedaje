@@ -41,8 +41,29 @@ class LoginCodesController extends Controller
      */
     public function create()
     {
+        
         $data['social'] = Settings::getAll()->where('type','social')->pluck('value','name');
-        return view('home.authenticate', $data);
+
+        if (Auth::check()) {
+            
+            $user_id = Auth::user()->id;
+            $user_status = Auth::user()->status;
+            Log::info($user_id);
+            Log::info( $user_status);
+            if ($user_status == 'Active' && $user_status != 0) {
+                return redirect()->intended('dashboard');
+    
+    
+            }
+            else{
+                return view('home.authenticate', $data);
+            }
+            
+        }else {
+            return view('home.authenticate', $data);
+            
+        }
+        
     }
 
     /**
@@ -100,7 +121,27 @@ class LoginCodesController extends Controller
      */
     public function edit(LoginCodes $loginCodes)
     {
-        return view('home.validate_authentication')->with('loginCode', session('loginCode'));
+        
+        if (Auth::check()) {
+            
+            $user_id = Auth::user()->id;
+            $user_status = Auth::user()->status;
+            Log::info($user_id);
+            Log::info( $user_status);
+            if ($user_status == 'Active' && $user_status != 0) {
+                return redirect()->intended('dashboard');
+    
+    
+            }
+            else{
+                return view('home.validate_authentication')->with('loginCode', session('loginCode'));
+            }
+            
+        }else {
+            return view('home.validate_authentication')->with('loginCode', session('loginCode'));
+            
+        }
+        
     }
 
     /**

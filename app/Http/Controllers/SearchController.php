@@ -31,7 +31,7 @@ class SearchController extends Controller
         $address = urlencode($location);
         $google_map_key = config("vrent.google_map_key");
 
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_map_key";
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_map_key&libraries=places&region=VE&language=es-419&callback=Function.prototype";
 
         $geocodeResponse = file_get_contents($url); // Suponiendo que content_read() hace algo similar a esto
 
@@ -149,7 +149,7 @@ class SearchController extends Controller
         $address = urlencode($location);
         $google_map_key = config("vrent.google_map_key");
 
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_map_key";
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_map_key&libraries=places&region=VE&language=es-419";
         $geocodeResponse = file_get_contents($url); // Suponiendo que content_read() hace algo similar a esto
 
         $json = json_decode($geocodeResponse, true);

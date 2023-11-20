@@ -12,7 +12,7 @@ $(document).on('click', '#status', function(){
   var id = $(this).attr('data-id');
   var datastatus = $(this).attr('data-status');
   var dataURL = APP_URL+'/listing/update_status';
-  
+
   $('#messages').empty();
   $.ajax({
       url: dataURL,
@@ -60,7 +60,7 @@ $(document).on('click', '.book_mark_change', function(event){
   event.preventDefault();
   var property_id = $(this).data("id");
   var property_status = $(this).data("status");
-  
+
   var dataURL = APP_URL+'/add-edit-book-mark';
   var that = this;
   if (property_status == "1")
@@ -143,7 +143,7 @@ $('#decline_reason').on('change', function(){
 
 if (typeof(expireTime) == 'undefined') {
   var expireTime = '';
-} 
+}
 
 var expiration_time  = expireTime;
 var _second = 1e3;
@@ -155,7 +155,7 @@ if (expireTime != '') {
   function expirationTimeSet() {
     var date_ele = new Date;
     var present_time = new Date(date_ele.getUTCFullYear(), date_ele.getUTCMonth(), date_ele.getUTCDate(), date_ele.getUTCHours(), date_ele.getUTCMinutes(), date_ele.getUTCSeconds()).getTime();
-    
+
     var expiration_time = new Date(expireTime).getTime();
 
     var time_remaining = expiration_time - present_time;
@@ -196,26 +196,90 @@ $(document).on('click', '.month-nav-previous', function(e){
 });
 
 $(document).on('keyup', '#header-search-form', function(){
-  autocomplete = new google.maps.places.Autocomplete(document.getElementById("header-search-form"));
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    const center = { lat: 7.3234943, lng: -71.4646351 };
+    // Create a bounding box with sides ~10km away from the center point
+    const defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+    const input = document.getElementById("header-search-form");
+    const options = {
+        bounds: defaultBounds,
+        componentRestrictions: { country: "ve" },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    window.autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
     mapDropDownActive();
   });
 });
 
 $(document).on('keyup', '#sidenav-search-form', function(){
-  autocomplete = new google.maps.places.Autocomplete(document.getElementById("sidenav-search-form"));
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    const center = { lat: 7.3234943, lng: -71.4646351 };
+    // Create a bounding box with sides ~10km away from the center point
+    const defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+    const input = document.getElementById("sidenav-search-form");
+    const options = {
+        bounds: defaultBounds,
+        componentRestrictions: { country: "ve" },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    window.autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
     document.getElementById("sidenav-search-drop-down").classList.toggle("sm-show");
     $("#sidenav-search-checkin").datepicker("show");
   });
 });
 
 $(document).on('keyup', '#front-search-field', function(){
-  autocomplete = new google.maps.places.Autocomplete(document.getElementById("front-search-field"));
+    const center = { lat: 7.3234943, lng: -71.4646351 };
+    // Create a bounding box with sides ~10km away from the center point
+    const defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+    const input = document.getElementById("front-search-field");
+    const options = {
+        bounds: defaultBounds,
+        componentRestrictions: { country: "ve" },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    window.autocomplete = new google.maps.places.Autocomplete(input, options);
 });
 
 $(document).on('keyup', '#location-search-google', function(){
-  autocomplete = new google.maps.places.Autocomplete(document.getElementById("location-search-google"));
+    const center = { lat: 7.3234943, lng: -71.4646351 };
+    // Create a bounding box with sides ~10km away from the center point
+    const defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+    const input = document.getElementById("location-search-google");
+    const options = {
+        bounds: defaultBounds,
+        componentRestrictions: { country: "ve" },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    window.autocomplete = new google.maps.places.Autocomplete(input, options);
 });
 
 function set_calendar(month, year){

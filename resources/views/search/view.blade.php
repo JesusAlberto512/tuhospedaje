@@ -405,7 +405,7 @@
 @endsection
 
 @section('validation_script')
-    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places'></script>
+    <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places&region=VE&language=es-419&callback=Function.prototype'></script>
 	<script type="text/javascript" src="{{ asset('public/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/moment.min.js') }}"></script>

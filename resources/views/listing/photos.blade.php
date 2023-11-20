@@ -44,7 +44,7 @@
                                                                     <input type="hidden" id="photo" type="text" name="photos">
                                                                     <input type="hidden" name="img_name" id="img_name">
                                                                     <input type="hidden" name="crop" id="type" value="crop">
-                                                                    <p class="text-13">(Width 640px and Height 360px)
+                                                                    <p class="text-13">(640px de ancho por  360px Alto)
                                                                     </p>
                                                                     <div id="result" class="hide">
                                                                         <img src="#" alt="">
@@ -68,7 +68,7 @@
                                                                     @if ($errors->any() && !$errors->has('url'))
                                                                         <div class="alert alert-danger mt-4">
                                                                          <span
-                                                                             class="text-center">{{ $errors->first() }}</span>
+                                                                             class="text-center">{{'Problema de validación' }}</span>
                                                                         </div>
                                                                     @endif
                                                                 </div>

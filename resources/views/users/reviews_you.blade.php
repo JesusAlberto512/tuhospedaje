@@ -284,6 +284,6 @@
     'use strict'
     var token = "{{ csrf_token() }}";
 </script>
-<script type="text/javascript" src="{{ asset('public/js/front.min.js') }}"></script>
-    
+<script type="text/javascript" src="{{ asset('public/js/front.js') }}"></script>
+
 @endsection

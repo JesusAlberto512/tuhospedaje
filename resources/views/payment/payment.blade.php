@@ -28,7 +28,7 @@
 				@if ($status == "" && $booking_type == "request")
 					<div class="h2 pb-4 m-0 text-24">{{ __('You will pay after host approval') }}</div>
 				@endif
-				@if ($booking_type == "instant"|| $status == "Processing" )
+				
 					<div class="col-md-12 p-0">
 						<label for="exampleInputEmail1">{{ __('Country') }}</label>
 					</div>
@@ -58,7 +58,7 @@
 						
 
 					</div>
-
+				@if ($booking_type == "instant"|| $status == "Processing" )
 				@endif
 
 					<div class="col-sm-12 p-0">
