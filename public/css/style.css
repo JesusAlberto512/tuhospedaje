@@ -2040,6 +2040,7 @@ textarea {
 input.checkinout {
 	padding: 12px !important;
 	height: 40px;
+	border-color: #ced4da!important;
 }
 
 input:focus,
