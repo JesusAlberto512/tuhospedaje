@@ -80,7 +80,7 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <p class="text-center text-underline">
-                            <a href="#" aria-label="modalLanguge" data-toggle="modal" data-target="#languageModalCenter"> <i class="fa fa-globe"></i> {{ Session::get('language_name')  ?? $default_language->name }} </a>
+                            <a href="#" aria-label="modalLanguge" data-toggle="modal" data-target="#languageModalCenter"> <i class="fa fa-globe"></i> {{ Session::get('language_name')  ?? 'Español' }} </a>
                             <a href="#" aria-label="modalCurrency" data-toggle="modal" data-target="#currencyModalCenter"> <span class="ml-4">{!! Session::get('symbol')  !!} - <u>{{ Session::get('currency')  }}</u> </span></a>
                         </div>
                     </div>
