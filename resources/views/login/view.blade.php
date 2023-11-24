@@ -69,13 +69,13 @@
 						</div>
 					</div>
 				@endif
-	                @if ($social['facebook_login'])
+	                {{-- @if ($social['facebook_login'])
 	                    <a href="{{ isset($facebook_url) ? $facebook_url : url('facebookLogin') }}">
 	                        <button class="btn btn-outline-primary pt-3 pb-3 text-16 w-100">
 	                            <span><i class="fab fa-facebook-f mr-2 text-16"></i> {{ __('Sign up with Facebook') }}</span>
 	                        </button>
 	                    </a>
-	                @endif
+	                @endif --}}
 
 	                @if ($social['google_login'])
 	                    <a href="{{ url('googleLogin') }}">
