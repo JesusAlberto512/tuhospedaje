@@ -4520,6 +4520,8 @@ html[dir="rtl"] .rtl-ml {
 	transition: all 200ms linear;
 
 	overflow-x: auto;
+
+	font-size: 1rem;
 }
 .bar-menu-movil-bottom.scrollDown{
 	-webkit-transform: translateY(100%);
