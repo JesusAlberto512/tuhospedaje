@@ -21,10 +21,10 @@
 											<div class="row">
 												<div class="col-md-12 pl-4 main-panelbg mb-4">
 													<h4 class="text-18 font-weight-700 pl-0 pr-0 pt-4 pb-4">{{ $row_type->name }}
-														@if ($row_type->name == 'Common Amenities')
+														
 															<input type="hidden" id="amenity_type_id" value="{{ $row_type->id }}">
 															<span class="text-danger">*</span>
-														@endif
+														
 													</h4>
 													@if ($row_type->description != '')
 														<p class="text-muted">{{ $row_type->description }}</p>
