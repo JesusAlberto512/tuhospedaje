@@ -49,7 +49,13 @@
 						</button>
 					</div>
 				</form>
-
+				@if ($social['google_login'])
+					<a href="{{ url('googleLogin') }}">
+						<button class="btn btn-outline-danger pt-3 pb-3 text-16 w-100 mt-3">
+							<span><i class="fab fa-google-plus-g  mr-2 text-16"></i>  {{ __('Sign up with Google') }}</span>
+						</button>
+					</a>
+				@endif
 				<div class="mt-3 text-14">
 					{{ __('Don’t have an account?') }}
 					<a href="{{ url('mobile-authenticate') }}" class="font-weight-600">
@@ -58,7 +64,7 @@
 				</div>
 
 				@if ($social['google_login'] || $social['facebook_login'])
-	                    <p class="text-center font-weight-700 mt-1"> - {{ __('or') }} - </p>
+	                    <p class="text-center font-weight-700 mt-1">  </p>
 	            @endif
 
 				@if (Session::has('message'))
@@ -69,21 +75,9 @@
 						</div>
 					</div>
 				@endif
-	                {{-- @if ($social['facebook_login'])
-	                    <a href="{{ isset($facebook_url) ? $facebook_url : url('facebookLogin') }}">
-	                        <button class="btn btn-outline-primary pt-3 pb-3 text-16 w-100">
-	                            <span><i class="fab fa-facebook-f mr-2 text-16"></i> {{ __('Sign up with Facebook') }}</span>
-	                        </button>
-	                    </a>
-	                @endif --}}
+	               
 
-	                @if ($social['google_login'])
-	                    <a href="{{ url('googleLogin') }}">
-	                        <button class="btn btn-outline-danger pt-3 pb-3 text-16 w-100 mt-3">
-	                            <span><i class="fab fa-google-plus-g  mr-2 text-16"></i>  {{ __('Sign up with Google') }}</span>
-	                        </button>
-	                    </a>
-	                @endif
+	               
 
 	                
 			</div>
