@@ -30,13 +30,11 @@ class Settings extends Model
 
     public static function getAll()
     {
-        $data = Cache::get(config('cache.prefix') . '.settings');
-        if (is_null($data) || $data->isEmpty()) {
-            $data = parent::all();
-            Cache::put(config('cache.prefix') . '.settings', $data, 30 * 86400);
-            Cache::put('logo' , $data->where('name','logo')->value('value'));
-            Cache::put('favicon' , $data->where('name','favicon')->value('value'));
+        $settings = parent::all();
+        foreach ($settings as $setting) {
+            $cacheKey = config('cache.prefix') . '.settings.' . $setting->name;
+            Cache::put($cacheKey, $setting->value, 30 * 86400);
         }
-        return $data;
+        return $settings;
     }
 }

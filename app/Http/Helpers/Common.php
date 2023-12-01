@@ -15,7 +15,7 @@ use App\Models\{
     penalty,
     Currency
 };
-
+use App\Models\{Settings, User};
 
 class Common {
 
@@ -597,9 +597,13 @@ class Common {
 
     public static function sendWhatsApp($nro, $text): string
     {
-        Log::info("sendWhatsApp Init");
+       
+        
+        $url_api_wassap       = Settings::getAll()->where('type', 'social')->where('name', 'urlwhatsapp')->first()->value;
+        $tokenDB              = Settings::getAll()->where('type', 'social')->where('name', 'tokenwhatsapp')->first()->value;
+
         $params=array(
-            'token' => 'dchm4bvf1h6gvkgl',
+            'token' => $tokenDB,
             'to' => '+'.$nro,
             'body' => 'Tu Hospedaje: Codigo Veriificacion '.$text,
             'priority' => '1',
@@ -607,9 +611,10 @@ class Common {
             'msgId' => '',
             'mentions' => ''
         );
+        
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.ultramsg.com/instance48033/messages/chat",
+            CURLOPT_URL => $url_api_wassap,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -620,21 +625,19 @@ class Common {
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => http_build_query($params),
             CURLOPT_HTTPHEADER => array(
-                "content-type: application/x-www-form-urlencoded"
+              "content-type: application/x-www-form-urlencoded"
             ),
-        ));
+          ));
 
         $response = curl_exec($curl);
         $err = curl_error($curl);
 
         curl_close($curl);
-        Log::info("sendWhatsApp Finish");
         if ($err) {
             echo "cURL Error #:" . $err;
             Log::error("sendWhatsApp error".$err);
             return "";
         } else {
-            Log::info("sendWhatsApp response {data}", ['data' => $response]);
             return $response;
         }
 
