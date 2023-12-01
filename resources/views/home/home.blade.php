@@ -87,11 +87,11 @@
 				<div class="row mt-5">
 					@foreach ($properties as $property)
 					<div class="col-md-6 col-lg-4 col-xl-3 pl-3 pr-3 pb-3 mt-4">
-						<div class="card h-100 card-shadow card-1">
+						<div class="card h-100 card-shadow card-1 " style="display: block;">
 							<div class="grid">
 								<a href="properties/{{ $property->slug }}" aria-label="{{ $property->name }}">
 									<figure">
-										<img src="{{ $property->cover_photo }}" class="room-image-container200" alt="{{ $property->name }}"/>
+										<img src="{{ $property->cover_photo }}" class="room-image-container200" alt="{{ $property->name }}" style="border-radius:20px;"/>
 										<figcaption>
 										</figcaption>
 									</figure>
@@ -145,10 +145,10 @@
 								<div class="card-footer text-muted p-0 border-0">
 									<div class="d-flex bg-white justify-content-between pl-2 pr-2 pt-2 mb-3">
 										<div>
-											<ul class="list-inline">
-												<li class="list-inline-item  pl-4 pr-4 border rounded-3 mt-2 bg-light text-dark">
-														<div class="vtooltip"> <i class="fas fa-user-friends"></i> {{ $property->accommodates }}
-														<span class="vtooltiptext text-14">{{ $property->accommodates }} {{ __('Guests') }}</span>
+											<ul class="list-inline" >
+												<li class="list-inline-item  pl-4 pr-4 border rounded-3 mt-2 bg-light text-dark" >
+														<div class="vtooltip" > <i class="fas fa-user-friends"></i> {{ $property->accommodates }}
+														<span class="vtooltiptext text-14" style="border-radius:20px;">{{ $property->accommodates }} {{ __('Guests') }}</span>
 													</div>
 												</li>
 

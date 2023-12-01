@@ -4,6 +4,8 @@
 
 @yield('main')
 
+@include('common.footer')
+
 @include('common.foot')
 
 @yield('validation_script')

@@ -2040,6 +2040,7 @@ textarea {
 input.checkinout {
 	padding: 12px !important;
 	height: 40px;
+	border-color: #ced4da!important;
 }
 
 input:focus,
@@ -4519,6 +4520,8 @@ html[dir="rtl"] .rtl-ml {
 	transition: all 200ms linear;
 
 	overflow-x: auto;
+
+	font-size: 1rem;
 }
 .bar-menu-movil-bottom.scrollDown{
 	-webkit-transform: translateY(100%);

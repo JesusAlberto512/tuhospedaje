@@ -1,5 +1,5 @@
 {{--Footer Section Start --}}
-<footer class="main-panel card border footer-bg p-4" id="footer">
+<footer class="main-panel card border footer-bg p-4 d-none d-lg-block" id="footer">
     <div class="container-fluid container-fluid-90">
         <div class="row">
             <div class="col-6 col-sm-3 mt-4">
@@ -80,7 +80,7 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <p class="text-center text-underline">
-                            <a href="#" aria-label="modalLanguge" data-toggle="modal" data-target="#languageModalCenter"> <i class="fa fa-globe"></i> {{ Session::get('language_name')  ?? $default_language->name }} </a>
+                            <a href="#" aria-label="modalLanguge" data-toggle="modal" data-target="#languageModalCenter"> <i class="fa fa-globe"></i> {{ Session::get('language_name')  ?? 'Español' }} </a>
                             <a href="#" aria-label="modalCurrency" data-toggle="modal" data-target="#currencyModalCenter"> <span class="ml-4">{!! Session::get('symbol')  !!} - <u>{{ Session::get('currency')  }}</u> </span></a>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
 </footer>
 @if(Auth::user())
 <footer id="bar-menu-movil-bottom" class="bar-menu-movil-bottom d-lg-none d-flex justify-content-around align-items-center footer-bg border-top px-2 py-2">
-    <div class="text-center px-3 item {{ request()->routeIs("search") ? 'active' : '' }}">
+    <div class="text-center px-1 item {{ request()->routeIs("search") ? 'active' : '' }}">
         <a href="{{ route("search") }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -105,7 +105,7 @@
             {{ __('LBL_EXPLORE') }}
         </a>
     </div>
-    <div class="text-center px-3 item {{ request()->routeIs("favorite") ? 'active' : '' }}">
+    <div class="text-center px-1 item {{ request()->routeIs("favorite") ? 'active' : '' }}">
         <a href="{{ route("favorite") }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
@@ -113,7 +113,7 @@
             {{ __('LBL_FAVORITES') }}
         </a>
     </div>
-    <div class="text-center px-3 item {{ request()->routeIs("tripsActive") ? 'active' : '' }}">
+    <div class="text-center px-1 item {{ request()->routeIs("tripsActive") ? 'active' : '' }}">
         <a href="{{ route("tripsActive") }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-fill" viewBox="0 0 16 16">
                 <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Z"/>
@@ -121,7 +121,7 @@
             {{ __('LBL_TRAVELS') }}
         </a>
     </div>
-    <div class="text-center px-3 item {{ request()->routeIs("inbox") ? 'active' : '' }}">
+    <div class="text-center px-1 item {{ request()->routeIs("inbox") ? 'active' : '' }}">
         <a href="{{ route("inbox") }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -129,7 +129,7 @@
             {{ __('LBL_MESSAGES') }}
         </a>
     </div>
-    <div class="text-center px-3 item {{ request()->routeIs("userProfile") ? 'active' : '' }}">
+    <div class="text-center px-1 item {{ request()->routeIs("userProfile") ? 'active' : '' }}">
         <a href="{{ route("userProfile") }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

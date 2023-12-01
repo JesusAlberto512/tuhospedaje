@@ -75,7 +75,7 @@ class PropertyController extends Controller
             } else {
                 $property                  = new Properties;
                 $property->host_id         = Auth::id();
-                $property->name            = SpaceType::getAll()->find($request->space_type)->name . ' in ' . $request->city;
+                $property->name            = "";
                 $property->property_type   = $request->property_type_id;
                 $property->space_type      = $request->space_type;
                 $property->accommodates    = $request->accommodates;
