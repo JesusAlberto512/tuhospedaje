@@ -24,6 +24,7 @@ use App\Models\{
     Amenities,
     AmenityType
 };
+use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
 {
@@ -614,5 +615,34 @@ class PropertyController extends Controller
             'favourite' => $favourite
         ]);
     }
+    /**
+     * Eliminar una propiedad espec?fica y sus registros relacionados.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteProperty(Request $request)
+    {
+        // Buscar la propiedad por ID
+        $id = $request->id;
+        $property = Properties::find($id);
+
+        // Verificar si la propiedad existe
+        if (!$property) {
+            // Puedes personalizar esta respuesta seg?n tus necesidades
+            return response()->json(['message' => 'Property not found'], 404);
+        }
+
+        // Eliminar registros relacionados
+        PropertyAddress::where('property_id', $id)->delete();
+        PropertyDescription::where('property_id', $id)->delete();
+        PropertyPhotos::where('property_id', $id)->delete();
+        PropertyPrice::where('property_id', $id)->delete();
+        $property->forceDelete();
+        $request->status = "All";
+        // Respuesta despu?s de eliminar la propiedad y sus registros relacionados
+        return redirect()->to('/properties');
+    }
+
 
 }
