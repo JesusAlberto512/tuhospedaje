@@ -17,6 +17,7 @@
     });
 
     $('#header-search-form').on('change', function(){
+        console.log("header-search-form");
         allowRefresh = true;
         deleteMarkers();
         getProperties($('#map_view').locationpicker('map').map);
@@ -53,6 +54,7 @@
     });
 
     $(document.body).on('click', '.page-data', function(e){
+        console.log("click page-data");
         e.preventDefault();
         var hr = $(this).attr('href');
         loadPage = hr;
@@ -98,7 +100,7 @@
     // Deletes all markers in the array by removing references to them.
     function deleteMarkers() {
         clearMarkers();
-        markers = [];
+        window.markers = [];
     }
 
     function moneyFormat(symbol, value) {
@@ -111,9 +113,8 @@
         return val;
     }
 
-
     function getProperties(map,url){
-
+        console.log("getProperties "+map.getBounds());
         if (loadPage) {
             url = url||'';
         var p = map;
@@ -125,9 +126,57 @@
             r = t.getNorthEast().lng(),
             l = t.getCenter().lat(),
             n = t.getCenter().lng();
+        let api = "";
+
+        $.ajax({
+            async:false,
+            // Our sample url to make request
+            url: apiGoogle,
+
+            // Type of Request
+            type: "GET",
+
+            // Function to call when to
+            // request is ok
+            success: function (data) {
+                let x = JSON.stringify(data);
+                api = data;
+                //console.log("success "+api);
+            },
+
+            // Error handling
+            error: function (error) {
+                console.log(`Error ${error}`);
+            }
+        });
+        let locationClick = "";
+        if(api != ""){
+            $.ajax({
+                async:false,
+                // Our sample url to make request
+                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+l+','+n+'&sensor=true&key='+api,
+
+                // Type of Request
+                type: "GET",
+
+                // Function to call when to
+                // request is ok
+                success: function (data) {
+                    let x = JSON.stringify(data);
+                    //console.log("success "+x);
+                    //console.log("success "+data.plus_code.compound_code);
+                    locationClick =data.plus_code.compound_code;
+                },
+
+                // Error handling
+                error: function (error) {
+                    console.log(`Error ${error}`);
+                }
+            });
+        }
 
 
-        map_loc = t;
+        window.map_loc = t;
         var range       = $('#price-range').attr('data-value');
         if(range == undefined){
             range       = "0,10000";
@@ -136,8 +185,8 @@
         }
         range           = range.split(',');
         var map_details = a + "~" + t + "~" + o + "~" + i + "~" + s + "~" + r + "~" + l + "~" + n;
-        var location    = $('#front-search-field').val();
-
+        var location    = locationClick != "" ? locationClick: $('#front-search-field').val();
+        $('#front-search-field').val(location);
         //Input Search value set
         $('#header-search-form').val(location);
         //Input Search value set
@@ -157,6 +206,7 @@
         var checkout        = $('#endDate').val();
         var guest           = $('#front-search-guests').val();
         var dataURL = loadPage;
+
         if ($('#more_filters').css('display') != 'none'){
             $.ajax({
                 url: dataURL,
@@ -397,7 +447,7 @@
                         if (room_div != '') $('#properties_show').html(room_div);
                         else $('#properties_show').html(' <div class="text-center justify-content-center w-100 position-center"><img src="'+notFoundImage+'" class="img-fluid not-found" alt="not-found"><h4 class="text-center text-20 font-weight-700">'+noResult+'</h4></div>');
 
-                        //deleteMarkers();
+                        deleteMarkers();
                         addMarker(map, room_point);
                     },
                     error: function (request, error) {
@@ -438,9 +488,11 @@
     }
 
     $(document.body).on('click','#map_view',function(){
-        allowRefresh = true;
-        loadPage = loadPage;
+        console.log("click map_view");
+        window.allowRefresh = true;
+        window.loadPage = loadPage;
         getProperties($('#map_view').locationpicker('map').map);
+
     });
     $('#map_view').locationpicker({
 
@@ -462,6 +514,7 @@
         draggable: true,
         onclick: function (currentLocation, radius, isMarkerDropped) {
             if (allowRefresh == true) {
+                console.log("click map_view.locationpicker");
                 getProperties($(this).locationpicker('map').map);
             }
         },
@@ -485,6 +538,7 @@
 
     // Map Close
     $('#closeMap').on('click', function(){
+        console.log("click closeMap");
         $('#listCol').removeClass('col-md-7');
         $('#listCol').addClass('col-md-12');
         $('#mapCol').addClass('d-none');
@@ -497,6 +551,7 @@
     });
     // Map show
     $('#showMap').on('click', function(){
+        console.log("click showMap");
         $('#listCol').removeClass('col-md-12');
         $('#listCol').addClass('col-md-7');
         $('#mapCol').removeClass('d-none');
@@ -507,9 +562,9 @@
     });
 
     $( window ).on( "load", function() {
-            allowRefresh = true;
-            loadPage = loadPage;
-            getProperties($('#map_view').locationpicker('map').map);
+        allowRefresh = true;
+        loadPage = loadPage;
+        getProperties($('#map_view').locationpicker('map').map);
     });
 
     $(document).on('click', '.dropdown-menu-price', function (e) {

@@ -25,11 +25,11 @@ use Validator, Mail, Session, Cache, Common, DB, Artisan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\{
-    Country, 
-    Settings, 
-    Language, 
-    Currency, 
-    PropertyFees, 
+    Country,
+    Settings,
+    Language,
+    Currency,
+    PropertyFees,
     Admin
 };
 

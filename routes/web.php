@@ -31,6 +31,7 @@ Route::get('cron/ical-synchronization','CronController@iCalendarSynchronization'
 //user can view it anytime with or without logged in
 Route::group(['middleware' => ['locale']], function () {
 	Route::get('/', 'HomeController@index');
+    Route::match('GET','search/google', 'SearchController@apiGoogle');
 	Route::post('search/result', 'SearchController@searchResult');
 	Route::match(array('GET', 'POST'),'search', 'SearchController@index')->name("search");
 	Route::match(array('GET', 'POST'),'properties/{slug}', 'PropertyController@single')->name('property.single');

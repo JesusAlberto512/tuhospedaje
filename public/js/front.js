@@ -641,7 +641,7 @@ function modal_alert(message, call_back){
 $('#ok_id').on('click', function(e){
     e.preventDefault()
 });
-$(document).on('submit', '#front-search-form', function() {
+$(document).on('submit', '#front-search-form', function(e) {
   e.preventDefault()
     var t = $("#startDate").val(),
         a = $("#endDate").val(),

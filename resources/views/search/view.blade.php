@@ -11,7 +11,7 @@
             <!-- Filter section start-->
             <div class="col-md-7  hidden-pod filter-h" id="listCol">
                 <div class="row mt-4">
-                    <h2 class="p-2">{{ __('Results for') }} <strong class="text-24">{{ $location }}</strong></h2>
+                    <h2 class="p-2">{{ __('Results for') }} <strong class="text-24" id="divLocationText" >{{ $location }}</strong></h2>
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -420,6 +420,7 @@
 
         var dateFormat = "{{ Session::get('front_date_format_type') }}";
         var loadPage = '{{ url("search/result") }}';
+        var apiGoogle = '{{ url("search/google") }}';
         var markers      = [];
         var allowRefresh = true;
         var map_loc ='';
