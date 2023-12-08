@@ -444,6 +444,10 @@ class PropertyController extends Controller
 
         $data['property_slug'] = $request->slug;
 
+        
+        if ($data['property_slug'] === 'incomplete' ) {
+            return view('property.unlisted_property');
+        }
         $data['result'] = $result = Properties::where('slug', $request->slug)->first();
 
         $userActive = $result->Users()->where('id', $result->host_id)->first();

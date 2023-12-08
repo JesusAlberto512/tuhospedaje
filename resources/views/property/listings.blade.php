@@ -45,9 +45,17 @@
                                 <div class=" row  border p-2 rounded-3">
                                     <div class="col-md-3 col-xl-4 p-2">
                                         <div class="img-event">
-                                            <a href="properties/{{ $property->slug }}">
-                                                <img class="room-image-container200 rounded" src="{{ $property->cover_photo }}" alt="cover_photo">
-                                            </a>
+                                            @if ( $property->slug)
+                                                <a href="properties/{{ $property->slug }}">
+                                                    <img class="room-image-container200 rounded" src="{{ $property->cover_photo }}" alt="cover_photo">
+                                                </a>
+                                            @else
+                                                <a href="properties/incomplete">
+                                                    <img class="room-image-container200 rounded" src="{{ $property->cover_photo }}" alt="cover_photo">
+                                                </a>
+                                            @endif
+
+                                            
                                         </div>
                                     </div>
 
