@@ -165,7 +165,18 @@
                     let x = JSON.stringify(data);
                     //console.log("success "+x);
                     //console.log("success "+data.plus_code.compound_code);
-                    locationClick =data.plus_code.compound_code;
+                    locationClick ="";
+                    for (const places of data.results) {
+                        if(locationClick != ""){
+                            break;
+                        }
+                        const place = $.parseJSON(JSON.stringify(places));
+                        const address = place.formatted_address;
+                        if(address.indexOf("+") < 0 && address.indexOf("sin nombre") < 0){
+                            locationClick = address;
+                            break;
+                        }
+                    }
                 },
 
                 // Error handling
@@ -187,6 +198,7 @@
         var map_details = a + "~" + t + "~" + o + "~" + i + "~" + s + "~" + r + "~" + l + "~" + n;
         var location    = locationClick != "" ? locationClick: $('#front-search-field').val();
         $('#front-search-field').val(location);
+        $('#divLocationText').html(location);
         //Input Search value set
         $('#header-search-form').val(location);
         //Input Search value set
