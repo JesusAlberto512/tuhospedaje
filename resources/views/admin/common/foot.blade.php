@@ -24,7 +24,7 @@
 <!-- Bootstrap 3.3.6 -->
 <script type="text/javascript" src="{{ asset('public/backend/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places&region=VE&language=es-419&callback=Function.prototype'></script>
-  <script type="text/javascript" src="{{ asset('public/backend/js/locationpicker.jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('public/backend/js/locationpicker.jquery.js') }}"></script>
   <script type="text/javascript" src="{{ asset('public/backend/js/bootbox.min.js') }}"></script>
 <!-- admin js -->
 <script type="text/javascript" src="{{ asset('public/backend/dist/js/admin.min.js') }}"></script>

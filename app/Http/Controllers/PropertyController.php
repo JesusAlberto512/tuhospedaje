@@ -24,6 +24,7 @@ use App\Models\{
     Amenities,
     AmenityType
 };
+use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
 {
@@ -287,7 +288,7 @@ class PropertyController extends Controller
                         'file' => 'dimensions:min_width=640,min_height=360',
                         'img_name' => 'required',
                         'photos' => 'required',
-                        
+
                     ]);
                 }
 
@@ -340,7 +341,7 @@ class PropertyController extends Controller
                     $property_steps->save();
                 }
 
-                return redirect('listing/' . $property_id . '/photos')->with('success', '¡Archivo cargado satifactoriamente!');
+                return redirect('listing/' . $property_id . '/photos')->with('success', 'ï¿½Archivo cargado satifactoriamente!');
 
             }
 
@@ -443,6 +444,10 @@ class PropertyController extends Controller
 
         $data['property_slug'] = $request->slug;
 
+
+        if ($data['property_slug'] === 'incomplete' ) {
+            return view('property.unlisted_property');
+        }
         $data['result'] = $result = Properties::where('slug', $request->slug)->first();
 
         $userActive = $result->Users()->where('id', $result->host_id)->first();
@@ -614,5 +619,34 @@ class PropertyController extends Controller
             'favourite' => $favourite
         ]);
     }
+    /**
+     * Eliminar una propiedad espec?fica y sus registros relacionados.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteProperty(Request $request)
+    {
+        // Buscar la propiedad por ID
+        $id = $request->id;
+        $property = Properties::find($id);
+
+        // Verificar si la propiedad existe
+        if (!$property) {
+            // Puedes personalizar esta respuesta seg?n tus necesidades
+            return response()->json(['message' => 'Property not found'], 404);
+        }
+
+        // Eliminar registros relacionados
+        PropertyAddress::where('property_id', $id)->delete();
+        PropertyDescription::where('property_id', $id)->delete();
+        PropertyPhotos::where('property_id', $id)->delete();
+        PropertyPrice::where('property_id', $id)->delete();
+        $property->forceDelete();
+        $request->status = "All";
+        // Respuesta despu?s de eliminar la propiedad y sus registros relacionados
+        return redirect()->to('/properties');
+    }
+
 
 }

@@ -1,6 +1,6 @@
 "use strict"
-   
-    
+
+
 if(page == 'basics') {
     //Basic
     $('#listing_bes').validate({
@@ -105,7 +105,7 @@ if(page == 'basics') {
     });
     $('#lis_location').validate({
         rules: {
-            address_line_1: {
+            'front-search-field': {
                 required: true,
                 maxlength: 255
             },
@@ -133,10 +133,8 @@ if(page == 'basics') {
         messages: {
             'amenities[]': {
                 required: fieldRequiredText,
-            }
-        },
-        messages: {
-            address_line_1: {
+            },
+            'front-search-field': {
                 required:  fieldRequiredText,
                 maxlength: maxlengthText,
                 },
@@ -215,7 +213,7 @@ if(page == 'basics') {
     $(document).on('submit', '#photo-form', function(e){
         e.preventDefault();
         $('#photo').hide();
-        
+
         var form_data = new FormData(this);
         var photo_file = $('#photo_file').val();
         if (photo_file != ''){
@@ -253,7 +251,7 @@ if(page == 'basics') {
             $('#photo_file').val('');
         }
     });
-    
+
     $(document).on('focusout', '.photo-highlights', function(e){
         var photo_id = $(this).attr('data-rel');
         var messages = $(this).val();
@@ -346,7 +344,7 @@ if(page == 'basics') {
     });
 
     $(document).on('change', '.serial', function(ev){
-				
+
         var serial = $(this).val();
         var id     = $(this).attr('image_id');
 
@@ -623,6 +621,6 @@ if(page == 'basics') {
 	        }
 	    });
 }
-    
-    
-    
+
+
+

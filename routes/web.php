@@ -31,6 +31,7 @@ Route::get('cron/ical-synchronization','CronController@iCalendarSynchronization'
 //user can view it anytime with or without logged in
 Route::group(['middleware' => ['locale']], function () {
 	Route::get('/', 'HomeController@index');
+    Route::match('GET','search/google', 'SearchController@apiGoogle');
 	Route::post('search/result', 'SearchController@searchResult');
 	Route::match(array('GET', 'POST'),'search', 'SearchController@index')->name("search");
 	Route::match(array('GET', 'POST'),'properties/{slug}', 'PropertyController@single')->name('property.single');
@@ -427,3 +428,6 @@ Route::post('duplicate-phone-number-check', 'UserController@duplicatePhoneNumber
 Route::post('duplicate-phone-number-check-for-existing-customer', 'UserController@duplicatePhoneNumberCheckForExistingCustomer');
 Route::match(['GET', 'POST'], 'admin/settings/sms', 'Admin\SettingsController@smsSettings');
 Route::match(['get', 'post'],'upload_image','Admin\PagesController@uploadImage')->name('upload');
+
+// En tu archivo web.php
+Route::post('/property/delete/{id}', 'PropertyController@deleteProperty')->name('property.delete');

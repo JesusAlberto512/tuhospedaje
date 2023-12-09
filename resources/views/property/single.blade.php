@@ -790,8 +790,9 @@
                             <div id="loader" class="display-off single-load">
                                 <img src="{{ asset('public/front/img/green-loader.gif') }}" alt="loader">
                             </div>
-                            <div class="table-responsive price-table-scroll">
-                                <table class="table table-bordered price_table" id="booking_table">
+                            <div class="col-md-12  p-4 single-border border-r-10 ">
+                                <table class="table table-borderless price_table" id="booking_table" style="border-collapse: separate; border-spacing: 0; border-radius: 10px;">
+
                                     <tbody>
                                         <div id="append_date">
 
@@ -1869,7 +1870,7 @@
     @auth
     <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
     @endauth
-    <script type="text/javascript" src="{{ asset('public/js/locationpicker.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/locationpicker.jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/ninja/ninja-slider.js') }}"></script>
     <!-- daterangepicker -->

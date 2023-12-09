@@ -1,4 +1,4 @@
-# /node_modules
+/node_modules
 # /public/backup
 # /public/frontend_backup
 # /public/images/uploads
@@ -11,9 +11,9 @@
 # /storage/db-backups/*.sql
 # /storage/*.key
 # /vendor
-# /.idea
-# /.vscode
-# /nbproject
+/.idea
+/.vscode
+/nbproject
 # /.history
 # /.vagrant
 # Homestead.json

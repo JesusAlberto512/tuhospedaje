@@ -4,7 +4,7 @@
         //console.log(options);
         var _map = new google.maps.Map(domElement, options);
         var _marker = new google.maps.Marker({
-            position: new google.maps.LatLng(54.19335, -3.92695),
+            position: new google.maps.LatLng(10.08296,-71.127103),
             map: _map,
             title: "Drag Me",
             visible: options.markerVisible,
@@ -138,7 +138,7 @@
                 } else if (component.types.indexOf("country") >= 0) {
                     result.country = component.short_name;
                     result.country_fullname = component.long_name;
-                } 
+                }
             }
             result.addressLine1 = [ result.streetNumber, result.streetName ].join(" ").trim();
             result.addressLine2 = "";
@@ -413,8 +413,8 @@
     };
     $.fn.locationpicker.defaults = {
         location: {
-            latitude: 40.7324319,
-            longitude: -73.82480777777776
+            latitude: 10.08296,
+            longitude: -71.127103
         },
         locationName: "",
         radius: 500,
@@ -429,9 +429,13 @@
             radiusInput: null,
             locationNameInput: null
         },
-        enableAutocomplete: false,
+        enableAutocomplete: true,
         enableAutocompleteBlur: false,
-        autocompleteOptions: null,
+        autocompleteOptions: {
+            componentRestrictions: { country: "VE" },
+            fields: ["address_components", "geometry", "icon", "name"],
+            strictBounds: false,
+        },
         addressFormat: "postal_code",
         enableReverseGeocode: true,
         draggable: true,

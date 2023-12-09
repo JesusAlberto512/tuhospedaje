@@ -45,9 +45,17 @@
                                 <div class=" row  border p-2 rounded-3">
                                     <div class="col-md-3 col-xl-4 p-2">
                                         <div class="img-event">
-                                            <a href="properties/{{ $property->slug }}">
-                                                <img class="room-image-container200 rounded" src="{{ $property->cover_photo }}" alt="cover_photo">
-                                            </a>
+                                            @if ( $property->slug)
+                                                <a href="properties/{{ $property->slug }}">
+                                                    <img class="room-image-container200 rounded" src="{{ $property->cover_photo }}" alt="cover_photo">
+                                                </a>
+                                            @else
+                                                <a href="properties/incomplete">
+                                                    <img class="room-image-container200 rounded" src="{{ $property->cover_photo }}" alt="cover_photo">
+                                                </a>
+                                            @endif
+
+
                                         </div>
                                     </div>
 
@@ -133,7 +141,10 @@
                                                             <span class="badge badge-warning p-3 pl-4 pr-4 text-14 border-r-25">{{ $property->steps_completed }} {{ __('steps to listed') }}</span>
                                                             @endif
                                                         </div>
+
+
                                                     </div>
+                                                    <!-- Dentro de tu loop de propiedades en Blade -->
 
                                                     @if ($property->steps_completed != 0 && $property->is_verified == 'Pending' && $property_approval == 'Yes')
                                                         <div class="col-6 col-sm-12">
@@ -155,6 +166,19 @@
                                                             </a>
                                                         </div>
                                                     @endif
+                                                    <!-- ... otros elementos de la propiedad ... -->
+                                                    <div class="col-6 col-sm-12">
+                                                    <form action="{{ route('property.delete', $property->id) }}" method="POST">
+                                                        @csrf <!-- Protección CSRF -->
+                                                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?')"
+                                                        style="height: 40px; width: 100%; padding: 8px 12px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);"
+
+
+                                                                class="btn btn-light">
+                                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                                        </button>
+                                                    </form>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,6 +212,25 @@
     var hasBeen = "{{ __('has been') }}";
 </script>
 <script src="{{ asset('public/js/front.js') }}"></script>
+<script>
+    function confirmDelete(propertyId) {
+        if(confirm("¿Estás seguro de que deseas eliminar esta propiedad?")) {
+            // Llamada AJAX o envío de formulario
+            // Por ejemplo, usando AJAX:
+            axios.post('/property/delete/' + propertyId)
+                .then(response => {
+                    // Manejo de la respuesta
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    // Manejo del error
+                    console.error(error);
+                });
+        }
+    }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
 @endsection
 
 

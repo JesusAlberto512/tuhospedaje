@@ -24,9 +24,13 @@ class SearchController extends Controller
         $this->helper = new Common;
     }
 
+    public function apiGoogle(Request $request)
+    {
+        return  config("vrent.google_map_key");
+    }
+
     public function index(Request $request)
     {
-
         $location = $request->input('location');
         $address = urlencode($location);
         $google_map_key = config("vrent.google_map_key");
@@ -36,9 +40,6 @@ class SearchController extends Controller
         $geocodeResponse = file_get_contents($url); // Suponiendo que content_read() hace algo similar a esto
 
         $json = json_decode($geocodeResponse, true);
-
-
-
 
         // Verificar si se obtuvieron resultados.
         if (isset($json['results']) && count($json['results']) > 0) {
@@ -155,6 +156,7 @@ class SearchController extends Controller
         $json = json_decode($geocodeResponse, true);
 
         if (isset($json['results']) && count($json['results']) > 0) {
+            $data['location'] = $request->input('location');
             $data['lat'] = $json['results'][0]['geometry']['location']['lat'] ?? 0;
             $data['long'] = $json['results'][0]['geometry']['location']['lng'] ?? 0;
 
