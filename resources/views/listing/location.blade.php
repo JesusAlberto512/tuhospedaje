@@ -102,7 +102,7 @@
 @section('validation_script')
 	<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places&region=VE&language=es-419&callback=Function.prototype'></script>
 	<script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('public/js/locationpicker.jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('public/js/locationpicker.jquery.js') }}"></script>
 
 	<script type="text/javascript">
 		'use strict'
@@ -113,7 +113,7 @@
 		let longitude = "{{ $result->property_address->longitude != '' ? $result->property_address->longitude:0 }}";
 		let page = 'location';
 	</script>
-	<script type="text/javascript" src="{{ asset('public/js/listings.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('public/js/listings.js') }}"></script>
 
 @endsection
 

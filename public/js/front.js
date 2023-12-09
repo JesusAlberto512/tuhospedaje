@@ -213,6 +213,10 @@ $(document).on('keyup', '#header-search-form', function(){
         types: ["establishment"],
     };
     window.autocomplete = new google.maps.places.Autocomplete(input, options);
+    // Set initial restriction to the greater list of countries.
+    autocomplete.setComponentRestrictions({
+        country: ["ve"],
+    });
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
     mapDropDownActive();
   });
@@ -236,6 +240,10 @@ $(document).on('keyup', '#sidenav-search-form', function(){
         types: ["establishment"],
     };
     window.autocomplete = new google.maps.places.Autocomplete(input, options);
+    // Set initial restriction to the greater list of countries.
+    autocomplete.setComponentRestrictions({
+        country: ["ve"],
+    });
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
     document.getElementById("sidenav-search-drop-down").classList.toggle("sm-show");
     $("#sidenav-search-checkin").datepicker("show");
@@ -260,6 +268,10 @@ $(document).on('keyup', '#front-search-field', function(){
         types: ["establishment"],
     };
     window.autocomplete = new google.maps.places.Autocomplete(input, options);
+    // Set initial restriction to the greater list of countries.
+    autocomplete.setComponentRestrictions({
+        country: ["ve"],
+    });
 });
 
 $(document).on('keyup', '#location-search-google', function(){
@@ -280,6 +292,10 @@ $(document).on('keyup', '#location-search-google', function(){
         types: ["establishment"],
     };
     window.autocomplete = new google.maps.places.Autocomplete(input, options);
+    // Set initial restriction to the greater list of countries.
+    autocomplete.setComponentRestrictions({
+        country: ["ve"],
+    });
 });
 
 function set_calendar(month, year){

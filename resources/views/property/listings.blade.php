@@ -55,7 +55,7 @@
                                                 </a>
                                             @endif
 
-                                            
+
                                         </div>
                                     </div>
 
@@ -142,7 +142,7 @@
                                                             @endif
                                                         </div>
 
-                                                        
+
                                                     </div>
                                                     <!-- Dentro de tu loop de propiedades en Blade -->
 
@@ -170,15 +170,15 @@
                                                     <div class="col-6 col-sm-12">
                                                     <form action="{{ route('property.delete', $property->id) }}" method="POST">
                                                         @csrf <!-- Protección CSRF -->
-                                                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?')" 
-                                                        style="height: 40px; width: 100%; padding: 8px 12px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);" 
-            
-            
+                                                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?')"
+                                                        style="height: 40px; width: 100%; padding: 8px 12px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);"
+
+
                                                                 class="btn btn-light">
                                                             <i class="fas fa-trash-alt"></i> Eliminar
                                                         </button>
                                                     </form>
-                                                </div> 
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>

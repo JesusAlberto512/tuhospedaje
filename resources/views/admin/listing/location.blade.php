@@ -110,6 +110,6 @@
 	let longitude = "{{ $result->property_address->longitude != '' ? $result->property_address->longitude:0 }}";
 </script>
 <script type="text/javascript" src="{{ asset('public/backend/dist/js/validate.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/js/listings.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/listings.js') }}"></script>
 @endsection
 

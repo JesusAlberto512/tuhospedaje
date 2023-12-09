@@ -410,7 +410,7 @@
     <script src="{{ asset('public/js/sweetalert.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/moment.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('public/js/daterangepicker.min.js') }}"></script>
-    <script src="{{ asset('public/js/locationpicker.jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/locationpicker.jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/daterangecustom.js') }}"></script>
     <script src="{{ asset('public/js/bootstrap-slider.min.js') }}"></script>
 

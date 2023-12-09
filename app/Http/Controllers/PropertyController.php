@@ -288,7 +288,7 @@ class PropertyController extends Controller
                         'file' => 'dimensions:min_width=640,min_height=360',
                         'img_name' => 'required',
                         'photos' => 'required',
-                        
+
                     ]);
                 }
 
@@ -341,7 +341,7 @@ class PropertyController extends Controller
                     $property_steps->save();
                 }
 
-                return redirect('listing/' . $property_id . '/photos')->with('success', '¡Archivo cargado satifactoriamente!');
+                return redirect('listing/' . $property_id . '/photos')->with('success', 'ï¿½Archivo cargado satifactoriamente!');
 
             }
 
@@ -444,7 +444,7 @@ class PropertyController extends Controller
 
         $data['property_slug'] = $request->slug;
 
-        
+
         if ($data['property_slug'] === 'incomplete' ) {
             return view('property.unlisted_property');
         }

@@ -88,7 +88,7 @@
 @section('validation_script')
 	<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key={{ config("vrent.google_map_key") }}&libraries=places&region=VE&language=es-419'></script>
 	<script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('public/js/locationpicker.jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('public/js/locationpicker.jquery.js') }}"></script>
 
 	<script type="text/javascript">
 		'use strict'
