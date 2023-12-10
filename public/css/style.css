@@ -2414,6 +2414,7 @@ div.elem-group.inlined input {
 		.card-shadow {
 			box-shadow: 0 0 5px 1px #eaeaea;
 			border: none;
+			border-radius: 10px;
 		}
 
 		.view-group {
@@ -2653,7 +2654,8 @@ li.edit-verifications-list-item p {
 		background-position: center;
 		position: relative;
 		object-fit: cover;
-        box-shadow: 1px 1px 10px rgb(3 174 116 / 25%);
+		border-radius:10px;
+        /*box-shadow: 1px 1px 10px rgb(3 174 116 / 25%);*/
 	}
 
 	.display-off {
