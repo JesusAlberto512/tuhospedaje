@@ -3558,8 +3558,11 @@ input[type=checkbox] {
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-	padding: 15px 15px 80px;
-	max-height: calc(100vh);
+	/* padding: 15px 15px 80px;
+	max-height: calc(100vh); */
+	padding: 1rem;
+	max-height: initial;
+	flex: initial;
 }
 
 .modal.left.fade .modal-dialog {
@@ -4540,4 +4543,14 @@ html[dir="rtl"] .rtl-ml {
 }
 .bar-menu-movil-bottom .item.active svg{
 	fill: #1dbf73;
+}
+
+.footer-sidebar{
+	background-image: url('../front/images/banners/banner_1.jpg');
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+    background-size: cover;
+	position: relative;
+	padding: 0;
+	opacity: 0.5;
 }

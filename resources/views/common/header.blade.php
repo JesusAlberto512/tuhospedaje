@@ -131,6 +131,9 @@
                     @endif
                 </ul>
             </div>
+
+            <div class="modal-footer flex-grow-1 footer-sidebar">
+            </div>
         </div>
     </div>
 </div>
