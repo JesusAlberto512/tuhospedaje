@@ -120,27 +120,6 @@
 														</li>
 													@endif
 
-													@if (Auth::user()->users_verification->facebook == 'no')
-														<li>
-															<h4 class="font-weight-700 text-16 mt-4">
-																{{ __('Facebook') }}
-															</h4>
-															<div class="row pl-4 pt-2">
-																<div class="col-md-9">
-																	<p class="text-16">
-																		{{ __('Sign in with Facebook and discover your trusted connections to hosts and guests all over the world.') }}
-																	</p>
-																</div>
-																<div class="col-md-3">
-																	<div>
-																		<a href="{{ url('facebookLoginVerification') }}">
-																			<button type="button" class="btn btn-outline-primary pl-4 pr-4 pt-3 pb-3 text-16 text-weight-700 w-100">{{ __('Connect') }}</button>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</li>
-													@endif
 
 													@if (Auth::user()->users_verification->google == 'no')
 														<li>
