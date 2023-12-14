@@ -87,7 +87,7 @@
                                         </p>
 
                                         <p class="text-14 mt-3">
-                                            @if ($booking->status == 'Pending' && $booking->payment_method_id <> 4)
+                                            @if ($booking->status == 'Processing' )
                                                 <span>
                                                     <a href="{{ url('booking/' . $booking->id) }}">
                                                         <i class="fas fa-check-square"></i> {{ __('Accept / Decline') }}

@@ -146,7 +146,7 @@ class BookingController extends Controller
         $penalty = Penalty::where('user_id', Auth::user()->id)->where('remaining_penalty', '!=', 0)->get();
         $penalty_result = Common::host_penalty_check($penalty, $booking->host_payout, $booking->currency_code);
 
-        $booking->status            = 'Processing';
+        $booking->status            = 'Accepted';
         $booking->accepted_at       = date('Y-m-d H:i:s');
         $booking->save();
 
@@ -185,7 +185,7 @@ class BookingController extends Controller
             $messages->save();
         }
 
-        $status = 'Processing';
+        $status = 'Accepted';
         $errorMessage = '';
         try {
             $email->bookingAcceptedOrDeclined($request->id, $status);

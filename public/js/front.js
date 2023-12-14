@@ -4,7 +4,8 @@ $(document).on('submit', '#accept_reservation_form', function() {
 });
 
 $('#accept-modal-trigger').on('click', function(){
-	expirationTimeSet()
+  
+	expirationTimeSet();
 	$('#accept-modal').modal();
 })
 
@@ -151,7 +152,7 @@ var  _minute = 60 * _second;
 var _hour = 60 * _minute;
 var  _day = 24 * _hour, timer;
 
-if (expireTime != '') {
+
   function expirationTimeSet() {
     var date_ele = new Date;
     var present_time = new Date(date_ele.getUTCFullYear(), date_ele.getUTCMonth(), date_ele.getUTCDate(), date_ele.getUTCHours(), date_ele.getUTCMinutes(), date_ele.getUTCSeconds()).getTime();
@@ -168,7 +169,7 @@ if (expireTime != '') {
         document.getElementById("countdown_1").innerHTML = h + ":", document.getElementById("countdown_1").innerHTML += m + ":", document.getElementById("countdown_1").innerHTML += s + "";
     }
   }
-} else { var expirationTimeSet = ''}
+
 
 
 var interval = setInterval(expirationTimeSet, 1e3);
