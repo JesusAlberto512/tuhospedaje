@@ -91,7 +91,7 @@
 							<div class="grid">
 								<a href="properties/{{ $property->slug }}" aria-label="{{ $property->name }}">
 									<figure">
-										<img src="{{ $property->cover_photo }}" class="room-image-container200" alt="{{ $property->name }}" style="border-radius:20px;"/>
+										<img src="{{ $property->cover_photo }}" class="room-image-container200" alt="{{ $property->name }}"/>
 										<figcaption>
 										</figcaption>
 									</figure>

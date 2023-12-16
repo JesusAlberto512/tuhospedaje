@@ -57,9 +57,13 @@
 					</a>
 				@endif
 				<div class="mt-3 text-14">
-					{{ __('Don’t have an account?') }}
-					<a href="{{ url('mobile-authenticate') }}" class="font-weight-600">
-					{{ __('Register') }}
+					<a href="{{ url('mobile-authenticate') }}" >
+					<button class="btn btn-outline-secondary  pt-3 pb-3 text-16 w-100 mt-3">
+						{{ __('Don’t have an account?') }}
+						
+						{{ __('Register') }}
+						
+					</button>	
 					</a>
 				</div>
 

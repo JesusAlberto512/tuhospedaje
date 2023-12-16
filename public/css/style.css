@@ -2414,6 +2414,7 @@ div.elem-group.inlined input {
 		.card-shadow {
 			box-shadow: 0 0 5px 1px #eaeaea;
 			border: none;
+			border-radius: 10px;
 		}
 
 		.view-group {
@@ -2653,7 +2654,8 @@ li.edit-verifications-list-item p {
 		background-position: center;
 		position: relative;
 		object-fit: cover;
-        box-shadow: 1px 1px 10px rgb(3 174 116 / 25%);
+		border-radius:10px;
+        /*box-shadow: 1px 1px 10px rgb(3 174 116 / 25%);*/
 	}
 
 	.display-off {
@@ -3556,8 +3558,11 @@ input[type=checkbox] {
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-	padding: 15px 15px 80px;
-	max-height: calc(100vh);
+	/* padding: 15px 15px 80px;
+	max-height: calc(100vh); */
+	padding: 1rem;
+	max-height: initial;
+	flex: initial;
 }
 
 .modal.left.fade .modal-dialog {
@@ -4538,4 +4543,14 @@ html[dir="rtl"] .rtl-ml {
 }
 .bar-menu-movil-bottom .item.active svg{
 	fill: #1dbf73;
+}
+
+.footer-sidebar{
+	background-image: url('../front/images/banners/banner_1.jpg');
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+    background-size: cover;
+	position: relative;
+	padding: 0;
+	opacity: 0.5;
 }

@@ -25,6 +25,8 @@ use App\Models\{
     AmenityType
 };
 use Illuminate\Support\Facades\Log;
+use App\Models\Reviews;
+use App\Models\Messages;
 
 class PropertyController extends Controller
 {
@@ -630,7 +632,6 @@ class PropertyController extends Controller
         // Buscar la propiedad por ID
         $id = $request->id;
         $property = Properties::find($id);
-
         // Verificar si la propiedad existe
         if (!$property) {
             // Puedes personalizar esta respuesta seg?n tus necesidades
@@ -638,15 +639,39 @@ class PropertyController extends Controller
         }
 
         // Eliminar registros relacionados
-        PropertyAddress::where('property_id', $id)->delete();
-        PropertyDescription::where('property_id', $id)->delete();
-        PropertyPhotos::where('property_id', $id)->delete();
-        PropertyPrice::where('property_id', $id)->delete();
-        $property->forceDelete();
-        $request->status = "All";
-        // Respuesta despu?s de eliminar la propiedad y sus registros relacionados
-        return redirect()->to('/properties');
+        try {
+            // Iniciar transacción
+            DB::beginTransaction();
+    
+            // Eliminar registros relacionados
+            PropertyAddress::where('property_id', $id)->forceDelete();
+            PropertyDescription::where('property_id', $id)->forceDelete();
+            PropertyPhotos::where('property_id', $id)->forceDelete();
+            PropertyPrice::where('property_id', $id)->forceDelete();
+            Favourite::where('property_id', $id)->forceDelete();
+            Reviews::where('property_id', $id)->forceDelete();
+            Messages::where('property_id', $id)->forceDelete();
+            Bookings::where('property_id', $id)->forceDelete();
+    
+            // Eliminar la propiedad
+            $property->forceDelete();
+            // Confirmar la transacción
+            DB::commit();
+    
+            $request->status = "All";
+            
+            // Respuesta después de eliminar la propiedad y sus registros relacionados
+            return redirect()->to('/properties');
+        } catch (\Exception $e) {
+            // Revertir la transacción en caso de error
+            DB::rollBack();
+    
+            // Manejar el error según tus necesidades
+            return response()->json(['message' => 'Error deleting property'], 500);
+        }
     }
 
 
 }
+
+

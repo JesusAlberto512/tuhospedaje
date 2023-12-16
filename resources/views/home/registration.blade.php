@@ -1,9 +1,8 @@
 @extends('template')
 @push('css')
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/js/intl-tel-input-13.0.0/build/css/intlTelInput.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/style-tuhospedaje.css') }}">
 @endpush
-@section('main')
+@section('main') 
 <div class="main-banner"  style="background-image: url('{{ getBanner() }}');">
 	<div class="container margin-top-65 min-height">
 	    <div class="d-flex justify-content-center">
@@ -15,6 +14,7 @@
 						<div class="row text-16">
 							<input type="hidden" name='email_signup' id='form'>
 							<input type="hidden" name="default_country" id="default_country" class="form-control">
+
 							<input type="hidden" name="carrier_code" id="carrier_code" class="form-control" value="{{session('loginCode')->carrier_code}}">
                             <input type="hidden" name="phone" id="phone" class="form-control" value="{{session('loginCode')->phone}}">
 							<input type="hidden" name="formatted_phone" id="formatted_phone" class="form-control" value="+{{session('loginCode')->carrier_code}}{{session('loginCode')->phone}}" >
@@ -120,9 +120,6 @@
 
 @section('validation_script')
 <script type="text/javascript" src="{{ asset('public/js/jquery.validate.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/js/intl-tel-input-13.0.0/build/js/intlTelInput.js') }}"></script>
-<script type="text/javascript" src="{{ asset('public/js/isValidPhoneNumber.js') }}" type="text/javascript"></script>
-
 <script type="text/javascript">
 
 	'use strict'
@@ -142,7 +139,7 @@
 	let minAge = "{{ __('You are not old enough!') }}";
 </script>
 
-<script type="text/javascript" src="{{ asset('public/js/sign-up-login.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/sign-up-login3.js') }}"></script>
 
 @endsection
 

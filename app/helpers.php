@@ -4,7 +4,7 @@ use App\Http\Helpers\Common;
 use App\Models\{Banners, Settings, Currency, StartingCities};
 use Illuminate\Support\Facades\{Cache, DB};
 use Twilio\Http\CurlClient;
-
+use Illuminate\Support\Facades\Log;
 
 if (!function_exists('appVersion')) {
     function appVersion()
@@ -294,8 +294,8 @@ function twilioSendSms($toNumber,$messages)
         $phoneSms        = Settings::getAll()->where('type','twilio')->whereIn('name', ['twilio_sid', 'twilio_token','formatted_phone'])->pluck('value', 'name')->toArray();
         $sid             = !empty($phoneSms['twilio_sid']) ? $phoneSms['twilio_sid'] : 'ACf4fd1e';
         $token           = !empty($phoneSms['twilio_token']) ? $phoneSms['twilio_token'] : 'da9580307';
-
-        $url             = "https://api.twilio.com/2010-04-01/Accounts/$sid/SMS/Messages";
+        
+        $url             = "https://api.twilio.com/2010-04-01/Accounts/$sid/Messages.json";
         $trimmedMsg      = trim(preg_replace('/\s\s+/', ' ', $messages));
 
         if (!empty($phoneSms['formatted_phone'])) {
