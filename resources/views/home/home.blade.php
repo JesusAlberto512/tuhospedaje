@@ -16,12 +16,12 @@
 							<form id="front-search-form" method="post" action="{{ url('search') }}">
 								{{ csrf_field() }}
 								<div class="row">
-									<div class="col-4 mt-3">
+									<div class="col-8 col-sm-4 mt-3">
 										<div class="input-group ">
 											<input class="form-control p-3 text-14" id="front-search-field" placeholder="{{ __('Where do you want to go?') }}" autocomplete="off" name="location" type="text" required>
 										</div>
 									</div>
-									<div class="col-2 mt-3">
+									<div class="col-4 col-sm-2 mt-3">
 										<div class="input-group">
 											<select id="front-search-guests" class="form-control  text-13" style="font-size:1.3rem;" name="bedrooms">
 											<option class="p-4 text-14" value="1">1 &#128100;</option>
