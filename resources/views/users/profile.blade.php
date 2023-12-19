@@ -3,11 +3,14 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/js/intl-tel-input-13.0.0/build/css/intlTelInput.css') }}">
 @endpush
 
+
+
 @section('main')
 <div class="margin-top-85">
     <div class="row m-0">
         <!-- sidebar start-->
         @include('users.sidebar')
+        
         <!--sidebar end-->
         <div class="col-lg-10 p-0">
             <div class="container-fluid min-height">
@@ -107,11 +110,17 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="row">
+                                                    @php
+                                                    setlocale(LC_TIME, 'es_ES.utf8'); // Establecer el idioma local a español
+                                                    @endphp
+
                                                     <div class="select col-sm-4 p-0 mt-4">
                                                         <select name='birthday_month' class='form-control  text-14' id='user_birthday_month'>
                                                         <option value=''>{{ __('Month') }}</option>
                                                         @for ($m=1; $m<=12; ++$m)
-                                                            <option value="{{ $m }}" {{ $m == ($date_of_birth[1] ?? '') ? 'selected' : '' }}>{{ date('F', mktime(0, 0, 0, $m, 1)) }}</option>
+                                                            <option value="{{ $m }}" {{ $m == ($date_of_birth[1] ?? '') ? 'selected' : '' }}>
+                                                                {{ ucfirst(\Carbon\Carbon::create(null, $m, 1)->monthName) }}
+                                                            </option>
                                                         @endfor
                                                         </select>
                                                     </div>
