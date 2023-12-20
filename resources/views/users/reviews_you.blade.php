@@ -82,7 +82,7 @@
                                         @empty
                                             <div class="row jutify-content-center w-100 p-4 mt-4">
                                                 <div class="text-center w-100">
-                                                    <img src="{{ asset('public/img/unnamed.png') }}" class="img-fluid"  alt="notfound">
+                                                    <img src="{{ asset('public/img/unnamed.png?v=' . time()) }}" class="img-fluid" alt="Not Found">
                                                     <p class="text-center">{{ __('Nobody to review right now. Looks like it’s time for another trip!') }}</p>
                                                 </div>
                                             </div>
@@ -155,7 +155,7 @@
                                         @empty
                                         <div class="row jutify-content-center  w-100 p-4 mt-4">
                                             <div class="text-center w-100">
-                                                <img src="{{ asset('public/img/unnamed.png') }}" class="img-fluid"  alt="notfound">
+                                                <img src="{{ asset('public/img/unnamed.png?v=' . time()) }}" class="img-fluid" alt="Not Found">
                                                 <p class="text-center">{{ __('Nobody to review right now. Looks like it’s time for another trip!') }}</p>
                                             </div>
                                         </div>
@@ -236,7 +236,7 @@
                                         @empty
                                             <div class="row jutify-content-center w-100 p-4 mt-4">
                                                 <div class="text-center w-100">
-                                                    <img src="{{ asset('public/img/unnamed.png') }}" class="img-fluid"  alt="notfound">
+                                                    <img src="{{ asset('public/img/unnamed.png?v=' . time()) }}" class="img-fluid" alt="Not Found">
                                                     <p class="text-center">{{ __('Nobody to review right now. Looks like it’s time for another trip!') }}</p>
                                                 </div>
                                             </div>
