@@ -188,7 +188,7 @@
                         @empty
                             <div class="row jutify-content-center position-center w-100 p-4 mt-4">
                                 <div class="text-center w-100">
-                                    <img src="{{ asset('public/img/unnamed.png') }}" class="img-fluid"   alt="Not Found">
+                                    <img src="{{ asset('public/img/unnamed.png?v=' . time()) }}" class="img-fluid" alt="Not Found">
                                     <p class="text-center">{{ __('You don’t have any Listing yet—but when you do, you’ll find them here.') }}</p>
                                 </div>
                             </div>

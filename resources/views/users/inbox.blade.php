@@ -188,7 +188,7 @@
 					@else
 						<div class="row jutify-content-center w-100 p-4 mt-4">
 							<div class="text-center w-100">
-								<img src="{{ asset('public/img/unnamed.png') }}" alt="notfound" class="img-fluid">
+								<img src="{{ asset('public/img/unnamed.png?v=' . time()) }}" class="img-fluid" alt="Not Found">
 								<p class="text-center">{{ __('You don’t have any messages when you do, you’ll find them here.') }} </p>
 							</div>
 						</div>

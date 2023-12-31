@@ -120,6 +120,7 @@
 														</li>
 													@endif
 
+													
 
 													@if (Auth::user()->users_verification->google == 'no')
 														<li>
