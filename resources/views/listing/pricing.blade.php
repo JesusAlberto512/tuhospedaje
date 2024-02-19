@@ -27,10 +27,10 @@
 											<span class="text-danger">*</span>
 										</label>
 										<div class="form-groupw-100">
-											<div class="input-group-prepend ">
-												<span class="input-group-text line-height-2-4 text-16 pay-currency">{!! $result->property_price->currency->org_symbol !!}</span>
+											<div class="input-group">
+												<span class="input-group-text pay-currency">{!! $result->property_price->currency->org_symbol !!}</span>
 
-												<input type="text" id="price-night" value="{{ ($result->property_price->original_price == 0) ? '' : $result->property_price->original_price }}" name="price"  class="money-input w-100 text-16" >
+												<input type="text" id="price-night" value="{{ ($result->property_price->original_price == 0) ? '' : $result->property_price->original_price }}" name="price"  class="money-input form-control" >
 											</div>
 											<span class="text-danger" id="price-error">{{ $errors->first('price') }}</span>
 										</div>
@@ -38,7 +38,7 @@
 
 									<div class="form-group col-lg-6 pl-5 pr-5">
 										<label for="inputPassword4">{{ __('Currency') }}</label>
-										<select id='price-select-currency_code' name="currency_code" class='form-control text-16 mt-2'>
+										<select id='price-select-currency_code' name="currency_code" class='form-control text-16'>
 											@foreach ($currency as $key => $value)
 												<option value="{{ $key }}" {{ $result->property_price->currency_code == $key?'selected':'' }}>{{ $value }}</option>
 											@endforeach
@@ -199,7 +199,7 @@
 									</div>
 
 									<div class="mt-4">
-										<button type="submit" class="btn vbtn-outline-success text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3 pl-5 pr-5" id="btn_next"> <i class="spinner fa fa-spinner fa-spin d-none" ></i> <span id="btn_next-text">{{ __('Next') }}</span>
+										<button type="submit" class="btn btn-outline-primary text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3 pl-5 pr-5" id="btn_next"> <i class="spinner fa fa-spinner fa-spin d-none" ></i> <span id="btn_next-text">{{ __('Next') }}</span>
 
 										</button>
 									</div>

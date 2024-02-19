@@ -53,7 +53,7 @@
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <button type="submit"
-                                                                            class="btn btn-large btn-photo text-16" id="up_button">
+                                                                            class="btn btn-large btn-primary text-16" id="up_button">
                                                                         <i class="spinner fa fa-spinner fa-spin d-none"
                                                                            id="up_spin"></i>
                                                                         <span
@@ -68,7 +68,7 @@
                                                                     @if ($errors->any() && !$errors->has('url'))
                                                                         <div class="alert alert-danger mt-4">
                                                                          <span
-                                                                             class="text-center">{{'Problema de validación' }}</span>
+                                                                             class="text-center">{{'Problema de validaciï¿½n' }}</span>
                                                                         </div>
                                                                     @endif
                                                                 </div>
@@ -178,7 +178,7 @@
 
 											<div class="mt-4">
 
-												<a href="{{ url('listing/' . $result->id . '/pricing') }}" class="btn vbtn-outline-success text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3 pl-5 pr-5" id="btnnext"><i class="spinner fa fa-spinner fa-spin d-none" id="btn_spin"></i>
+												<a href="{{ url('listing/' . $result->id . '/pricing') }}" class="btn btn-outline-primary text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3 pl-5 pr-5" id="btnnext"><i class="spinner fa fa-spinner fa-spin d-none" id="btn_spin"></i>
 													<span id="btnnext-text">{{ __('Next') }}</span>
 												</a>
 											</div>
