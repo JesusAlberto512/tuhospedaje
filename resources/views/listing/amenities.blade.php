@@ -65,7 +65,7 @@
 										</div>
 
 										<div class="mt-4">
-											<button type="submit" class="btn vbtn-outline-success text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3" id="btn_next"> <i class="spinner fa fa-spinner fa-spin d-none" ></i>
+											<button type="submit" class="btn btn-outline-primary text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3" id="btn_next"> <i class="spinner fa fa-spinner fa-spin d-none" ></i>
 												<span id="btn_next-text">{{ __('Next') }}</span>
 											</button>
 										</div>

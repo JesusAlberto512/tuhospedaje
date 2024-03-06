@@ -67,7 +67,7 @@
 						<div class="col-md-12 p-0 text-right">
 							<button type="button" class="btn btn-outline-danger text-14 mt-4 pl-4 pr-4 mr-2" data-dismiss="modal">{{ __('Close') }}</button>
 
-							<button id="price_btn" class="btn vbtn-outline-success text-14 mt-4 pl-4 pr-4 ml-2" type="submit" name="submit">
+							<button id="price_btn" class="btn btn-outline-primary text-14 mt-4 pl-4 pr-4 ml-2" type="submit" name="submit">
 								<i id="price_spinner" class="spinner fa fa-spinner fa-spin d-none" ></i>
 								<span id="price_next-text"></span>
 							</button>
@@ -139,7 +139,7 @@
 
 							<button type="button" class="btn btn-outline-danger text-16 cls-reload pl-4 pr-4 ml-2" data-dismiss="modal">{{ __('Close') }}</button>
 
-							<button class="btn vbtn-outline-success pull-right text-16 pl-4 pr-4 mr-2" type="submit" id="import_btn" name="Import"> <i class="spinner fa fa-spinner fa-spin d-none" id="import_spinner" ></i>
+							<button class="btn btn-outline-primary pull-right text-16 pl-4 pr-4 mr-2" type="submit" id="import_btn" name="Import"> <i class="spinner fa fa-spinner fa-spin d-none" id="import_spinner" ></i>
 								<span id="import_btn-text">{{ __('Import Calendar') }}</span>
 							</button>
 						</div>
@@ -174,7 +174,7 @@
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" aria-describedby="basic-addon2" value="{{ url('icalender/export/' . $result->id . '.ics') }}" readonly="" id="myInput">
 					<div class="input-group-append">
-						<button class="btn vbtn-outline-success text-14 font-weight-700 pl-5 pr-5 pt-3 pb-3 pl-5 pr-5" onclick="myFunction()" id="copied">Copy</button>
+						<button class="btn btn-outline-primary text-14 font-weight-700 pl-5 pr-5 pt-3 pb-3 pl-5 pr-5" onclick="myFunction()" id="copied">Copy</button>
 					</div>
 				</div>
 			</div>
@@ -221,15 +221,15 @@
 								<div class="row justify-content-start mb-4">
 									<ul class="list-inline ml-4">
 										<li class="list-inline-item mt-4">
-											<a class="js-calendar-sync text-white text-16 btn secondary-bg " data-prevent-default="true" href="{{ url('icalendar/synchronization/' . $result->id) }}" id="cal_sync"><i class="spinner fa fa-spinner fa-spin d-none" id="cal_sync_spinner"></i> {{ __('Sync with other calendars') }}</a>
+											<a class="js-calendar-sync text-16 btn btn-primary " data-prevent-default="true" href="{{ url('icalendar/synchronization/' . $result->id) }}" id="cal_sync"><i class="spinner fa fa-spinner fa-spin d-none" id="cal_sync_spinner"></i> {{ __('Sync with other calendars') }}</a>
 										</li>
 
 										<li class="list-inline-item mt-4">
-											<button class="text-white text-16 btn secondary-bg imporpt_calendar">{{ __('Import Calendar') }}</button>
+											<button class="text-16 btn btn-primary imporpt_calendar">{{ __('Import Calendar') }}</button>
 										</li>
 
 										<li class="list-inline-item mt-4">
-											<button class="text-white text-16 btn secondary-bg" id="export_icalendar">{{ __('Export Calendar') }}</button>
+											<button class="text-16 btn btn-primary" id="export_icalendar">{{ __('Export Calendar') }}</button>
 										</li>
 									</ul>
 								</div>
@@ -246,7 +246,7 @@
 							</div>
 
 							<div class="mt-4">
-								<a  data-prevent-default="" href="{{ url('properties/' . $result->slug) }}" class="btn vbtn-outline-success text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3" id="btn_next">
+								<a  data-prevent-default="" href="{{ url('properties/' . $result->slug) }}" class="btn btn-outline-primary text-16 font-weight-700 pl-5 pr-5 pt-3 pb-3" id="btn_next">
 									<i class="spinner fa fa-spinner fa-spin d-none" id="btn_next_spinner"></i>
 									<span id="btn_next-text">{{ __('Next') }}</span>
 								</a>

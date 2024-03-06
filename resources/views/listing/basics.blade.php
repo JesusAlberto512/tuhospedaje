@@ -100,7 +100,7 @@
 
 							<div class="form-row float-right mt-5 mb-5">
 								<div class="col-md-12 pr-0">
-									<button type="submit" class="btn vbtn-outline-success text-16 font-weight-700 pl-4 pr-4 pt-3 pb-3" id="btn_next"><i class="spinner fa fa-spinner fa-spin d-none" ></i>
+									<button type="submit" class="btn btn-outline-primary text-16 font-weight-700 pl-4 pr-4 pt-3 pb-3" id="btn_next"><i class="spinner fa fa-spinner fa-spin d-none" ></i>
 										<span id="btn_next-text">{{ __('Next') }}</span>
 									</button>
 								</div>
